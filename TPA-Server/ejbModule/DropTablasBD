@@ -1,0 +1,20 @@
+--Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente
+
+drop table DetalleMovimientoStock
+go
+drop table DetalleSolicitado
+go
+drop table ItemRecepcionCompra
+go
+drop table ItemSolicitadoArticulo
+go
+drop table RecepcionCompra
+go
+drop table SolicitudArticulo
+go
+drop table SolicitudCompra
+go
+drop table ItemSolicitudCompra
+go
+drop table Articulo
+go
