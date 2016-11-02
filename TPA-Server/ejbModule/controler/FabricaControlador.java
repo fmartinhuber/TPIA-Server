@@ -1,5 +1,5 @@
 package controler;
 
-public class FabricaControlador {
+public class FabricaControlador implements IFabricaControlador{
 
 }

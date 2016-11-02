@@ -1,5 +1,5 @@
 package controler;
 
-public class DespachoControlador {
+public class DespachoControlador implements IDespachoControlador{
 
 }

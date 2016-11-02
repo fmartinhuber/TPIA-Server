@@ -5,6 +5,8 @@ import java.util.List;
 
 import bean.*;
 import dao.*;
+import dto.ArticuloDTO;
+import dto.MuebleDTO;
 
 //Prueba Daro 1er Commit
 
@@ -15,7 +17,7 @@ import dao.*;
  * @author Martin
  *
  */
-public class DepositoControlador {
+public class DepositoControlador implements IDepositoControlador{
 
 	public static DepositoControlador instancia;
 
@@ -33,7 +35,7 @@ public class DepositoControlador {
 		return SolicitudArticuloDao.getInstancia().obtenerArticulosPendientes();
 	}
 
-	public ArrayList<MuebleBean> listarMuebles() {
+	public ArrayList<MuebleDTO> listarMuebles() {
 
 		ArrayList<MuebleBean> muebles = new ArrayList<>();
 		MuebleBean aux;
@@ -57,10 +59,10 @@ public class DepositoControlador {
 			muebles.add(aux);
 
 		}
-		return muebles;
+		return null;
 	}
 
-	public void crearArticulo(ArticuloBean articulo) {
+	public void crearArticulo(ArticuloDTO articulo) {
 
 		ArticuloBean newArticulo = new ArticuloBean();
 
@@ -80,7 +82,7 @@ public class DepositoControlador {
 		ArticuloDao.getInstancia().persist(newArticulo);
 	}
 
-	public void modificarArticulo(ArticuloBean articulo) {
+	public void modificarArticulo(ArticuloDTO articulo) {
 
 		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(articulo.getCodigo());
 
@@ -98,7 +100,7 @@ public class DepositoControlador {
 		ArticuloDao.getInstancia().persist(newArticulo);
 	}
 	
-	public void modificarStockDelArticulo(ArticuloBean articulo){
+	public void modificarStockDelArticulo(ArticuloDTO articulo){
 		
 		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(articulo.getCodigo());
 		
