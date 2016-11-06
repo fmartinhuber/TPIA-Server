@@ -30,7 +30,11 @@ public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 	// Constructor
     
     public ArticuloEJB() {}
+    
+    // Metodos a implementar
 
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticuloDTO> listarArticulos() {
 		// TODO Auto-generated method stub
@@ -40,16 +44,17 @@ public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 		return salida.stream().map(a -> new ArticuloDTO(a.getId(),a.getNombre(),a.getCodigo(),a.getColor())).collect(Collectors.<ArticuloDTO>toList());
 	}
 
+
 	@Override
 	public ArticuloDTO buscarArticuloPorCodigo(Integer codArticulo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
 	}
 
 	@Override
 	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();			
+	}		
 
 }

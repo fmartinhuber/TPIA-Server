@@ -1,52 +1,67 @@
-package test;
-
-import java.util.ArrayList;
-
-import bean.*;
-import controler.*;
-import dao.*;
-import dto.*;
-
-public class TestRama {
-
-	public static void main(String[] args) {
-		
-		ArrayList<ArticuloDTO> articulos = new ArrayList<ArticuloDTO>();
-		articulos = (ArrayList<ArticuloDTO>) DepositoControlador.getInstancia().listarArticulos();
-		
-		for(ArticuloDTO a : articulos){
-		System.out.println("Codigo: " +a.getCodArticulo());
-		}
-		
-		
-//		ArrayList<ArticuloBean> articulos = (ArrayList<ArticuloBean>) DepositoControlador.getInstancia().listarArticulos();
-//		
-//		for(ArticuloBean a : articulos){
-//			System.out.println("Codigo: " +a.getCodigo());
-//		}
-//		
-//		System.out.println();
-//		System.out.println();
-//		
-//		ArticuloBean newArticulo = new ArticuloBean();
-//		newArticulo.setCodigo(666);
-//		newArticulo.setDescripcion("Descripcion new");
-//		
-//		DepositoControlador.getInstancia().crearArticulo(newArticulo);
+//package test;
 //
-//		System.out.println();
-//		System.out.println();
-		
-		
-//		ArticuloBean newArticulo = new ArticuloBean();
-//		newArticulo.setCodigo(888);
-//		newArticulo.setCantidadDisponible(15);
+//import java.util.*;
+//
+//import bean.*;
+//import controler.*;
+//import dao.*;
+//import dto.*;
+//import interfaz.ArticuloEJBLocal;
+//import negocio.*;
+//
+//public class TestRama {
+//
+//	public static void main(String[] args) {
 //		
-//		DepositoControlador.getInstancia().modificarStockDelArticulo(newArticulo);
-//		System.out.println("Se modificó el artículo");
-		
-		
-
-	}
-
-}
+////		List<ArticuloDTO> articulosDTO = new ArrayList<ArticuloDTO>();
+////						
+////		ArticuloEJBLocal articuloEJB = new ArticuloEJB();
+////		articulosDTO = articuloEJB.listarArticulos();
+////		
+////		for(ArticuloDTO a : articulosDTO){
+////			System.out.println("Codigo: " +a.getCodArticulo());
+////		}
+//		
+//		
+//		ArticuloEJBLocal articuloEJB2 = new ArticuloEJB();
+//		ArticuloDTO newArticulo = new ArticuloDTO();
+//		
+//		newArticulo.setCodArticulo(666);
+//		
+//		articuloEJB2.persist(newArticulo);
+//		
+////		List<ArticuloBean> articulosBean = new ArrayList<ArticuloBean>();
+////		ArticuloEJBLocal articuloEJB = new ArticuloEJB();
+////		articulosBean = articuloEJB.listarArticulos2();
+//		
+////		ArrayList<ArticuloBean> articulos = (ArrayList<ArticuloBean>) DepositoControlador.getInstancia().listarArticulos();
+////		
+////		for(ArticuloBean a : articulos){
+////			System.out.println("Codigo: " +a.getCodigo());
+////		}
+////		
+////		System.out.println();
+////		System.out.println();
+////		
+////		ArticuloBean newArticulo = new ArticuloBean();
+////		newArticulo.setCodigo(666);
+////		newArticulo.setDescripcion("Descripcion new");
+////		
+////		DepositoControlador.getInstancia().crearArticulo(newArticulo);
+////
+////		System.out.println();
+////		System.out.println();
+//		
+//		
+////		ArticuloBean newArticulo = new ArticuloBean();
+////		newArticulo.setCodigo(888);
+////		newArticulo.setCantidadDisponible(15);
+////		
+////		DepositoControlador.getInstancia().modificarStockDelArticulo(newArticulo);
+////		System.out.println("Se modificó el artículo");
+//		
+//		
+//
+//	}
+//
+//}

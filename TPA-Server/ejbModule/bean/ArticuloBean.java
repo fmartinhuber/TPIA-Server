@@ -6,6 +6,7 @@ import java.util.*;
 import javax.persistence.*;
 
 import dao.ArticuloDao;
+import dto.ArticuloDTO;
 
 @Entity
 @Table(name = "Articulo")
@@ -49,6 +50,8 @@ public class ArticuloBean implements Serializable {
 	private String material;
 	@Column(nullable = true)
 	private Integer cantidadDisponible;	
+	
+	// Constructores
 		
 	public ArticuloBean(){}
 
@@ -74,6 +77,8 @@ public class ArticuloBean implements Serializable {
 		this.cantidadDisponible = cantidadDisponible;
 		this.color = color;
 	}
+	
+	// Getters y Setters
 
 	public Integer getId() {
 		return id;
@@ -215,7 +220,7 @@ public class ArticuloBean implements Serializable {
 		this.color = color;
 	}
 	
-	
+	// Metodos de persistencia
 	
 	public void mergeArticulo() {
 		ArticuloDao.getInstancia().merge(this);
@@ -232,6 +237,55 @@ public class ArticuloBean implements Serializable {
 	public void deleteArticulo() {
 		ArticuloDao.getInstancia().delete(this);
 	}
+	
+	// Métodos de transformaciones
+	
+	public void aArticuloBean(ArticuloDTO articuloDTO){
+		
+		this.setCantidadDisponible(articuloDTO.getCantidadDisponible());
+		this.setCodigo(articuloDTO.getCodArticulo());
+		this.setColor(articuloDTO.getColor());
+		this.setDescripcion(articuloDTO.getDescripcion());
+		this.setEdadRecomendada(articuloDTO.getEdadRecomendada());
+		this.setFecha(articuloDTO.getFecha());
+		this.setFichaTecnica(articuloDTO.getFichaTecnica());
+		this.setFoto(articuloDTO.getFoto());
+		this.setId(articuloDTO.getId());
+		this.setIdDeposito(articuloDTO.getIdDeposito());
+		this.setMarca(articuloDTO.getMarca());
+		this.setMaterial(articuloDTO.getMaterial());
+		this.setNombre(articuloDTO.getNombre());
+		this.setOrigen(articuloDTO.getOrigen());
+		this.setPrecio(articuloDTO.getPrecio());
+		this.setTalle(articuloDTO.getTalle());
+		this.setTipo(articuloDTO.getTipo());
+		
+	}
+	
+	public ArticuloDTO aArticuloDTO(){
+		
+		ArticuloDTO articuloDTO = new ArticuloDTO();
+		articuloDTO.setCantidadDisponible(this.getCantidadDisponible());
+		articuloDTO.setCodArticulo(this.getCodigo());
+		articuloDTO.setColor(this.getColor());
+		articuloDTO.setDescripcion(this.descripcion);
+		articuloDTO.setEdadRecomendada(this.getEdadRecomendada());
+		articuloDTO.setFecha(this.getFecha());
+		articuloDTO.setFichaTecnica(this.getFichaTecnica());
+		articuloDTO.setFoto(this.getFoto());
+		articuloDTO.setId(this.getId());
+		articuloDTO.setIdDeposito(this.getIdDeposito());
+		articuloDTO.setMarca(this.getMarca());
+		articuloDTO.setMaterial(this.getMaterial());
+		articuloDTO.setNombre(this.getNombre());
+		articuloDTO.setOrigen(this.getOrigen());
+		articuloDTO.setPrecio(this.getPrecio());
+		articuloDTO.setTalle(this.getTalle());
+		articuloDTO.setTipo(this.getTipo());
+		
+		return articuloDTO;
+	}
+	
 	
 	
 }
