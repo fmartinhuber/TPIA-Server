@@ -5,10 +5,13 @@ import interfaz.ArticuloEJBRemote;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import bean.ArticuloBean;
@@ -21,6 +24,7 @@ import dto.ArticuloDTO;
 @LocalBean
 public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 
+	@PersistenceContext(unitName="MyPU")
 	private EntityManager em;
 	
 	// Constructor
@@ -33,14 +37,19 @@ public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 		Query q = em.createQuery("from ArticuloBean");
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
-		System.out.println(salida.get(0));
-		return null;				
+		return salida.stream().map(a -> new ArticuloDTO(a.getId(),a.getNombre(),a.getCodigo(),a.getColor())).collect(Collectors.<ArticuloDTO>toList());
 	}
 
 	@Override
-	public void crearArticulo(ArticuloDTO articulo) {
+	public ArticuloDTO buscarArticuloPorCodigo(Integer codArticulo) {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+
+	@Override
+	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

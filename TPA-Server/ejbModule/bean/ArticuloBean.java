@@ -28,7 +28,7 @@ public class ArticuloBean implements Serializable {
 	@Column(nullable = true)
 	private String marca;
 	@Column(nullable = true)
-	private float precio;
+	private Float precio;
 	@Column(nullable = true)
 	private String foto;
 	@Column(nullable = true)
@@ -53,7 +53,7 @@ public class ArticuloBean implements Serializable {
 	public ArticuloBean(){}
 
 	public ArticuloBean(Integer id, String idDeposito, Integer codArticulo, String nombre, String descripcion, String marca, String origen,
-			float precio, String tipo, Date fecha, String foto, String edadRecomendada, String fichaTecnica,
+			Float precio, String tipo, Date fecha, String foto, String edadRecomendada, String fichaTecnica,
 			String talle, String material, Integer cantidadDisponible, String color) {
 		super();
 		this.id = id;
