@@ -2,41 +2,29 @@ package bean;
 
 import javax.persistence.*;
 
-import bean.ArticuloBean;
+import dao.*;
 
 @Entity
 @Table(name = "ItemSolicitudCompra")
 public class ItemSolicitudCompraBean {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer ItemSolicitudCompra;
-	@ManyToOne
+	private Integer idItemSolicitudCompra;
+	
+	@OneToOne // Cambie ManyToOne a OneToOne
 	@JoinColumn(name = "idArticulo")
 	private ArticuloBean articulo;
+
+//	@ManyToOne (cascade=CascadeType.ALL)
+//	@JoinColumn(name="idSolicitudCompra")
+//	private SolicitudCompraBean solicitudCompra;
+	
 	private Integer cantidad;
-	
-	
-	
-	public ItemSolicitudCompraBean(ArticuloBean articulo, Integer cantidad) {
-		super();
-		this.articulo = articulo;
-		this.cantidad = cantidad;
-	}
 
-	public ItemSolicitudCompraBean() {
-		super();
-	}
-
+	// Constructor
 	
-	
-	public Integer getItemSolicitudCompra() {
-		return ItemSolicitudCompra;
-	}
-
-	public void setItemSolicitudCompra(Integer itemSolicitudCompra) {
-		ItemSolicitudCompra = itemSolicitudCompra;
-	}
+	public ItemSolicitudCompraBean() {}
 
 	public ArticuloBean getArticulo() {
 		return articulo;
@@ -53,5 +41,21 @@ public class ItemSolicitudCompraBean {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}	
+	
+	public void mergeItemSolicitudCompra() {
+		ItemSolicitudCompraDao.getInstancia().merge(this);
+	}
+
+	public void persistItemSolicitudCompra() {
+		ItemSolicitudCompraDao.getInstancia().persist(this);
+	}
+
+	public void updateItemSolicitudCompra() {
+		ItemSolicitudCompraDao.getInstancia().update(this);
+	}
+
+	public void deleteItemSolicitudCompra() {
+		ItemSolicitudCompraDao.getInstancia().delete(this);
+	}
 	
 }

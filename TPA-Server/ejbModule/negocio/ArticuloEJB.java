@@ -22,21 +22,10 @@ import dto.ArticuloDTO;
 public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 
 	private EntityManager em;
-    /**
-     * Default constructor. 
-     */
-    public ArticuloEJB() {
-        // TODO Auto-generated constructor stub
-    }
-
-	@Override
-	public void addArticulo(ArticuloDTO art) {
-		// TODO Auto-generated method stub
-		
-		// Transformar DTO a BEAN 
-		ArticuloBean artb = new ArticuloBean();
-		em.persist(artb);
-	}
+	
+	// Constructor
+    
+    public ArticuloEJB() {}
 
 	@Override
 	public List<ArticuloDTO> listarArticulos() {
@@ -45,7 +34,13 @@ public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
 		System.out.println(salida.get(0));
-		return null;
+		return null;				
+	}
+
+	@Override
+	public void crearArticulo(ArticuloDTO articulo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

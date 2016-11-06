@@ -4,27 +4,27 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import dao.*;
+
 @Entity
 @Table (name="SolicitudArticulo")
 public class SolicitudArticuloBean {
+		
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idSolicitudArticulo;
-	private String codigo; //Este atributo identifica univocamente al objeto, el id lo manejamos para nuestra base
-	private Boolean pendiente; // (No cumplidas/Pendientes = FALSE - Cumplidas = TRUE)
-	private Date fecha;
 	
+	private Integer codigo; 
+	private String estado; 
+	private Date fechaEntrega;
+	private Integer idModulo;
 	
-	public SolicitudArticuloBean(String codigo, Boolean pendiente, Date fecha) {
-		super();
-		this.codigo = codigo;
-		this.pendiente = pendiente;
-		this.fecha = fecha;
-	}
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private List<ItemSolicitadoArticuloBean> itemsSolicitudArticulo;
+	
+	// Constructor
 
-	public SolicitudArticuloBean() {
-		super();
-	}
+	public SolicitudArticuloBean() {}
 
 	public Integer getIdSolicitudArticulo() {
 		return idSolicitudArticulo;
@@ -34,28 +34,52 @@ public class SolicitudArticuloBean {
 		this.idSolicitudArticulo = idSolicitudArticulo;
 	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
-	public Boolean getPendiente() {
-		return pendiente;
+	
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setPendiente(Boolean pendiente) {
-		this.pendiente = pendiente;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaEntrega() {
+		return fechaEntrega;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
+
+	public Integer getIdModulo() {
+		return idModulo;
+	}
+
+	public void setIdModulo(Integer idModulo) {
+		this.idModulo = idModulo;
+	}
+	
+	public void mergeSolicitudArticulo() {
+		SolicitudArticuloDao.getInstancia().merge(this);
+	}
+
+	public void persistSolicitudArticulo() {
+		SolicitudArticuloDao.getInstancia().persist(this);
+	}
+
+	public void updateSolicitudArticulo() {
+		SolicitudArticuloDao.getInstancia().update(this);
+	}
+
+	public void deleteSolicitudArticulo() {
+		SolicitudArticuloDao.getInstancia().delete(this);
 	}
 		
 }

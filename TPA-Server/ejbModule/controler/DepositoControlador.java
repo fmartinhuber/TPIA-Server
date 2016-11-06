@@ -6,7 +6,8 @@ import java.util.List;
 import bean.*;
 import dao.*;
 import dto.ArticuloDTO;
-import dto.MuebleDTO;
+import interfaz.ArticuloEJBLocal;
+import negocio.ArticuloEJB;
 
 //Prueba Daro 1er Commit
 
@@ -17,7 +18,7 @@ import dto.MuebleDTO;
  * @author Martin
  *
  */
-public class DepositoControlador implements IDepositoControlador{
+public class DepositoControlador implements IDepositoControlador {
 
 	public static DepositoControlador instancia;
 
@@ -34,81 +35,99 @@ public class DepositoControlador implements IDepositoControlador{
 	public List<SolicitudArticuloBean> obtenerArticuloSolicitadoPendiente() {
 		return SolicitudArticuloDao.getInstancia().obtenerArticulosPendientes();
 	}
-
-	public ArrayList<MuebleDTO> listarMuebles() {
-
-		ArrayList<MuebleBean> muebles = new ArrayList<>();
-		MuebleBean aux;
-		List<MuebleBean> consulta = MuebleDao.getInstancia().listarMuebles();
-
-		for (MuebleBean m : consulta) {
-			aux = new MuebleBean();
-			aux.setCodigo(m.getCodigo());
-			aux.setDescripcion(m.getDescripcion());
-			aux.setFoto(m.getFoto());
-			aux.setIdArticulo(m.getIdArticulo());
-			aux.setMarca(m.getMarca());
-			aux.setMaterial(m.getMaterial());
-			aux.setNombre(m.getNombre());
-			aux.setOrigen(m.getOrigen());
-			aux.setPrecio(m.getPrecio());
-			aux.setStockActual(m.getStockActual());
-			aux.setStockSolicitado(m.getStockSolicitado());
-			aux.setTipo(m.getTipo());
-
-			muebles.add(aux);
-
-		}
-		return null;
-	}
-
-	public void crearArticulo(ArticuloDTO articulo) {
-
+	
+	public void crearArticulo(ArticuloBean articulo){
+		
 		ArticuloBean newArticulo = new ArticuloBean();
-
+				
+		newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
+		newArticulo.setIdDeposito(articulo.getIdDeposito());
 		newArticulo.setCodigo(articulo.getCodigo());
 		newArticulo.setDescripcion(articulo.getDescripcion());
+		newArticulo.setEdadRecomendada(articulo.getEdadRecomendada());
+		newArticulo.setFecha(articulo.getFecha());
+		newArticulo.setFichaTecnica(articulo.getFichaTecnica());
 		newArticulo.setFoto(articulo.getFoto());
-		newArticulo.setIdArticulo(articulo.getIdArticulo());
 		newArticulo.setMarca(articulo.getMarca());
+		newArticulo.setMaterial(articulo.getMaterial());
 		newArticulo.setNombre(articulo.getNombre());
 		newArticulo.setOrigen(articulo.getOrigen());
 		newArticulo.setPrecio(articulo.getPrecio());
-		newArticulo.setStockActual(articulo.getStockActual());
-		newArticulo.setStockSolicitado(articulo.getStockSolicitado());
-		newArticulo.setTipo(articulo.getCodigo());
-
-//		newArticulo.persistArticulo(newArticulo);
-		ArticuloDao.getInstancia().persist(newArticulo);
-	}
-
-	public void modificarArticulo(ArticuloDTO articulo) {
-
-		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(articulo.getCodigo());
-
-		newArticulo.setDescripcion(articulo.getDescripcion());
-		newArticulo.setFoto(articulo.getFoto());
-		newArticulo.setMarca(articulo.getMarca());
-		newArticulo.setNombre(articulo.getNombre());
-		newArticulo.setOrigen(articulo.getOrigen());
-		newArticulo.setPrecio(articulo.getPrecio());
-		newArticulo.setStockActual(articulo.getStockActual());
-		newArticulo.setStockSolicitado(articulo.getStockSolicitado());
-		newArticulo.setTipo(articulo.getTipo());
-
-//		newArticulo.updateArticulo(newArticulo);
-		ArticuloDao.getInstancia().persist(newArticulo);
+		newArticulo.setTalle(articulo.getTalle());
+		newArticulo.setColor(articulo.getColor());
+		newArticulo.setTipo(articulo.getTipo());		
+		
+		newArticulo.persistArticulo();
+		
 	}
 	
-	public void modificarStockDelArticulo(ArticuloDTO articulo){
+	public List<ArticuloBean> listarArticulos2(){
+		
+		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
+		ArticuloBean aux;
+		List<ArticuloBean> articulos = ArticuloDao.getInstancia().listarArticulos();
+		
+		for(ArticuloBean a : articulos){
+			aux = new ArticuloBean();
+			aux.setCantidadDisponible(a.getCantidadDisponible());
+			aux.setCodigo(a.getCodigo());
+			aux.setDescripcion(a.getDescripcion());
+			aux.setIdDeposito(a.getIdDeposito());
+			aux.setEdadRecomendada(a.getEdadRecomendada());
+			aux.setFecha(a.getFecha());
+			aux.setFichaTecnica(a.getFichaTecnica());
+			aux.setFoto(a.getFoto());
+			aux.setMarca(a.getMarca());
+			aux.setMaterial(a.getMaterial());
+			aux.setId(a.getId());
+			aux.setNombre(a.getNombre());
+			aux.setOrigen(a.getOrigen());
+			aux.setPrecio(a.getPrecio());
+			aux.setTalle(a.getTalle());
+			aux.setColor(a.getColor());
+			aux.setTipo(a.getTipo());
+			
+			salida.add(aux);
+		}
+		
+		return salida;
+		
+	}
+		
+	
+	public void modificarStockDelArticulo(ArticuloBean articulo){
 		
 		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(articulo.getCodigo());
 		
-		newArticulo.setStockActual(articulo.getStockActual());
-		newArticulo.setStockSolicitado(articulo.getStockSolicitado());
-		
-//		newArticulo.updateArticulo(newArticulo);
-		ArticuloDao.getInstancia().persist(newArticulo);
+		if(newArticulo != null){
+			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
+			newArticulo.updateArticulo();
+		}			
 	}
+
+	@Override
+	public void crearArticulo(ArticuloDTO articulo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificarArticulo(ArticuloDTO articulo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<ArticuloDTO> listarArticulos() {
+		
+		ArrayList<ArticuloDTO> salida = new ArrayList<ArticuloDTO>();
+		ArticuloDTO aux;
+		
+		
+		
+		return salida;
+		
+	}
+	
 
 }

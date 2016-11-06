@@ -1,10 +1,10 @@
 package bean;
 
-public enum ETipoArticulo {
+public enum TipoArticulo {
 
 	Electrodomesticos,
 	Moda,
 	Muebles,
-	Ninos
+	Infantil
 	
 }

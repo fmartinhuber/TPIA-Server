@@ -2,7 +2,7 @@ package bean;
 
 import javax.persistence.*;
 
-import bean.ArticuloBean;
+import dao.*;
 
 @Entity
 @Table(name = "DetalleMovimientoStock")
@@ -13,11 +13,12 @@ public class MovimientoStockBean {
 	private Integer idMovimientoStock;
 	@ManyToOne
 	@JoinColumn(name = "idArticulo")
+	
 	private ArticuloBean articulo;
-	private String tipoMovimiento; // Ingreso o Egreso del stock
+	private String tipoMovimiento; 
 	private Integer cantidad;
 	
-	
+	// Constructor
 	
 	public MovimientoStockBean(ArticuloBean articulo, String tipoMovimiento, Integer cantidad) {
 		super();
@@ -28,9 +29,7 @@ public class MovimientoStockBean {
 
 	public MovimientoStockBean() {
 		super();
-	}
-	
-	
+	}	
 
 	public Integer getIdMovimientoStock() {
 		return idMovimientoStock;
@@ -62,6 +61,23 @@ public class MovimientoStockBean {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	
+	public void mergeDetalleMovimientoStock() {
+		DetalleMovimientoStockDao.getInstancia().merge(this);
+	}
+
+	public void persistDetalleMovimientoStock() {
+		DetalleMovimientoStockDao.getInstancia().persist(this);
+	}
+
+	public void updateDetalleMovimientoStock() {
+		DetalleMovimientoStockDao.getInstancia().update(this);
+	}
+
+	public void deleteDetalleMovimientoStock() {
+		DetalleMovimientoStockDao.getInstancia().delete(this);
 	}
 	
 }

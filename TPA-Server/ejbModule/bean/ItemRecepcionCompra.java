@@ -2,28 +2,30 @@ package bean;
 
 import javax.persistence.*;
 
-import bean.ArticuloBean;
+import dao.*;
+
 
 @Entity
 @Table(name = "ItemRecepcionCompra")
 public class ItemRecepcionCompra {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idItemRecepcionCompra;
+	
 	@ManyToOne
 	@JoinColumn(name = "idArticulo")
 	private ArticuloBean articulo;
+	
+//	@ManyToOne (cascade=CascadeType.ALL)
+//	@JoinColumn(name="idRecepcionCompra")
+//	private RecepcionCompraBean recepcionCompra;
+	
 	private Integer cantidad;
 	
-	public ItemRecepcionCompra(ArticuloBean articulo, Integer cantidad) {
-		this.articulo = articulo;
-		this.cantidad = cantidad;
-	}
+	// Constructor
 
-	public ItemRecepcionCompra() {
-		
-	}
+	public ItemRecepcionCompra() {}
 
 	public Integer getIdItemRecepcionCompra() {
 		return idItemRecepcionCompra;
@@ -47,6 +49,22 @@ public class ItemRecepcionCompra {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public void mergeItemRecepcionCompra() {
+		ItemRecepcionCompraDao.getInstancia().merge(this);
+	}
+
+	public void persistItemRecepcionCompra() {
+		ItemRecepcionCompraDao.getInstancia().persist(this);
+	}
+
+	public void updateItemRecepcionCompra() {
+		ItemRecepcionCompraDao.getInstancia().update(this);
+	}
+
+	public void deleteItemRecepcionCompra() {
+		ItemRecepcionCompraDao.getInstancia().delete(this);
 	}
 	
 }

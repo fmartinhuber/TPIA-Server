@@ -3,6 +3,7 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+//import hbt.HibernateUtil;
 
 public class DepositoDao extends HibernateDao{
 
@@ -20,13 +21,10 @@ public class DepositoDao extends HibernateDao{
 
 	
 	
-	/**
-	 * Por favor no borrar. Sirve para cargar las tablas en la BD
-	 */
 	public void prueba(){
-//		Session session = sf.openSession();
-//		session.beginTransaction();
-		System.out.println("Metodo de prueba utilizado.");
+		Session session = sf.openSession();
+		session.beginTransaction();
+		System.out.println("Metodo de prueba utilizado. Por favor no borrar. Sirve para cargar las tablas en la BD");
 	}
 	
 }

@@ -1,87 +1,102 @@
 package bean;
 
+import java.io.Serializable;
+import java.util.*;
+
 import javax.persistence.*;
 
 import dao.ArticuloDao;
 
-/*	
- *	Daro: Todos los atributos de ArticuloBean fueron tomados del pdf de articulos en Web Campus
-	Rama: hay 4 tipos de articulo, se separará con el identificador "Tipo"
-	 
-*/
-
-
 @Entity
 @Table(name = "Articulo")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
-public class ArticuloBean {
+public class ArticuloBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idArticulo;
-	@Column(nullable = false)
-	private String nombre;
-	@Column(nullable = false)
-	private String codigo;
-	@Column(nullable = false)
-	private String descripcion;
-	@Column(nullable = false)
-	private String marca;
-	@Column(nullable = false)
-	private float precio;
-	@Column(nullable = false)
-	private String foto;
-	@Column(nullable = false)
-	private String origen;
-
-	@Transient
-	@Column(insertable = false, updatable = false)
-	private String tipo;
+	@GeneratedValue
+	private Integer id;
 	
-	@Column(nullable = false)
-	private static String grupo;
-
-	// protected String fichaTecnica;
 	@Column(nullable = true)
-	private Integer stockActual; // Atributo particular que manejamos por ser
-									// Deposito
+	private String idDeposito; 	
 	@Column(nullable = true)
-	private Integer stockSolicitado; /*
-										 * Este atributo es necesario para
-										 * posteriormente calcular la cantidad
-										 * de Articulos a pedir. Es el stock que
-										 * se desea tener en el deposito. Se
-										 * carga al momento del alta y queda
-										 * fijo
-										 */
+	private Integer codArticulo;
+	@Column(nullable = true)
+	private String nombre;
+	@Column(nullable = true)
+	private String descripcion;
+	@Column(nullable = true)
+	private String marca;
+	@Column(nullable = true)
+	private float precio;
+	@Column(nullable = true)
+	private String foto;
+	@Column(nullable = true)
+	private String origen;	
+	@Column(nullable = true)
+	private String tipo;
+	@Column(nullable = true)
+	private Date fecha;	
+	@Column(nullable = true)
+	private String edadRecomendada;
+	@Column(nullable = true)
+	private String fichaTecnica;
+	@Column(nullable = true)
+	private String color;
+	@Column(nullable = true)
+	private String talle;
+	@Column(nullable = true)
+	private String material;
+	@Column(nullable = true)
+	private Integer cantidadDisponible;	
+		
+	public ArticuloBean(){}
 
-	public ArticuloBean(String nombre, String codigo, String descripcion, String marca, float precio, String foto,
-			String origen, String tipo, Integer stockActual, Integer stockSolicitado) {
+	public ArticuloBean(Integer id, String idDeposito, Integer codArticulo, String nombre, String descripcion, String marca, String origen,
+			float precio, String tipo, Date fecha, String foto, String edadRecomendada, String fichaTecnica,
+			String talle, String material, Integer cantidadDisponible, String color) {
 		super();
+		this.id = id;
+		this.idDeposito = idDeposito;
+		this.codArticulo = codArticulo;
 		this.nombre = nombre;
-		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.marca = marca;
-		this.precio = precio;
-		this.foto = foto;
 		this.origen = origen;
+		this.precio = precio;
 		this.tipo = tipo;
-		// this.fichaTecnica = fichaTecnica;
-		this.stockActual = stockActual;
-		this.stockSolicitado = stockSolicitado;
+		this.fecha = fecha;
+		this.foto = foto;
+		this.edadRecomendada = edadRecomendada;
+		this.fichaTecnica = fichaTecnica;
+		this.talle = talle;
+		this.material = material;
+		this.cantidadDisponible = cantidadDisponible;
+		this.color = color;
 	}
 
-	public ArticuloBean() {
-
+	public Integer getId() {
+		return id;
 	}
 
-	public Integer getIdArticulo() {
-		return idArticulo;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getIdDeposito() {
+		return idDeposito;
 	}
 
-	public void setIdArticulo(Integer idArticulo) {
-		this.idArticulo = idArticulo;
+	public void setIdDeposito(String idDeposito) {
+		this.idDeposito = idDeposito;
+	}
+
+	public Integer getCodigo() {
+		return codArticulo;
+	}
+
+	public void setCodigo(Integer codArticulo) {
+		this.codArticulo = codArticulo;
 	}
 
 	public String getNombre() {
@@ -90,14 +105,6 @@ public class ArticuloBean {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getDescripcion() {
@@ -116,28 +123,20 @@ public class ArticuloBean {
 		this.marca = marca;
 	}
 
-	public float getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(float precio) {
-		this.precio = precio;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public String getOrigen() {
 		return origen;
 	}
 
 	public void setOrigen(String origen) {
 		this.origen = origen;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
 	}
 
 	public String getTipo() {
@@ -148,29 +147,91 @@ public class ArticuloBean {
 		this.tipo = tipo;
 	}
 
-	// public String getFichaTecnica() {
-	// return fichaTecnica;
-	// }
-	//
-	// public void setFichaTecnica(String fichaTecnica) {
-	// this.fichaTecnica = fichaTecnica;
-	// }
-
-	public Integer getStockActual() {
-		return stockActual;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setStockActual(Integer stockActual) {
-		this.stockActual = stockActual;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
-	public Integer getStockSolicitado() {
-		return stockSolicitado;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setStockSolicitado(Integer stockSolicitado) {
-		this.stockSolicitado = stockSolicitado;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
+	public String getEdadRecomendada() {
+		return edadRecomendada;
+	}
 
+	public void setEdadRecomendada(String edadRecomendada) {
+		this.edadRecomendada = edadRecomendada;
+	}
+
+	public String getFichaTecnica() {
+		return fichaTecnica;
+	}
+
+	public void setFichaTecnica(String fichaTecnica) {
+		this.fichaTecnica = fichaTecnica;
+	}
+
+	public String getTalle() {
+		return talle;
+	}
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setCantidadDisponible(Integer cantidadDisponible) {
+		this.cantidadDisponible = cantidadDisponible;
+	};
+	
+	public Integer getCantidadDisponible() {
+		return cantidadDisponible;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	
+	
+	public void mergeArticulo() {
+		ArticuloDao.getInstancia().merge(this);
+	}
+
+	public void persistArticulo() {
+		ArticuloDao.getInstancia().persist(this);
+	}
+
+	public void updateArticulo() {
+		ArticuloDao.getInstancia().update(this);
+	}
+
+	public void deleteArticulo() {
+		ArticuloDao.getInstancia().delete(this);
+	}
+	
+	
 }
