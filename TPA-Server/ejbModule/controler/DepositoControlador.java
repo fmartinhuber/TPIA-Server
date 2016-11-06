@@ -3,9 +3,16 @@ package controler;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import bean.*;
 import dao.*;
 import dto.ArticuloDTO;
+import dto.RecepcionCompraDTO;
+import dto.SolicitudCompraDTO;
 import interfaz.ArticuloEJBLocal;
 import negocio.ArticuloEJB;
 
@@ -13,13 +20,18 @@ import negocio.ArticuloEJB;
 
 /**
  * Desde este controlador se deberian de llamar a todos los servicios
- * implementados. lskjdaf
+ * implementados.
  * 
  * @author Martin
  *
  */
-public class DepositoControlador implements IDepositoControlador {
+@Stateless
+@LocalBean
+public class DepositoControlador implements IDepositoControladorLocal, IDepositoControladorRemote{
 
+	@PersistenceContext(unitName="MyPU")
+	private EntityManager em;
+	
 	public static DepositoControlador instancia;
 
 	public static DepositoControlador getInstancia() {
@@ -107,7 +119,6 @@ public class DepositoControlador implements IDepositoControlador {
 
 	@Override
 	public void crearArticulo(ArticuloDTO articulo) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -128,6 +139,31 @@ public class DepositoControlador implements IDepositoControlador {
 		return salida;
 		
 	}
+
+	@Override
+	public void crearSolicitudCompra(SolicitudCompraDTO compraDTO){
+		SolicitudCompraBean solicitudCompraBean = new SolicitudCompraBean();
+		em.persist(solicitudCompraBean);
+	}
+
+	@Override
+	public ArticuloDTO obtenerArticulosPendientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void recepcionCompra(RecepcionCompraDTO compraDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<SolicitudCompraDTO> solicitudesPendientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 
 }
