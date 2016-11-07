@@ -238,10 +238,12 @@ public class ArticuloBean implements Serializable {
 		ArticuloDao.getInstancia().delete(this);
 	}
 	
+	
+	
+	
 	// Métodos de transformaciones
 	
 	public void aArticuloBean(ArticuloDTO articuloDTO){
-		
 		this.setCantidadDisponible(articuloDTO.getCantidadDisponible());
 		this.setCodigo(articuloDTO.getCodArticulo());
 		this.setColor(articuloDTO.getColor());
@@ -250,7 +252,6 @@ public class ArticuloBean implements Serializable {
 		this.setFecha(articuloDTO.getFecha());
 		this.setFichaTecnica(articuloDTO.getFichaTecnica());
 		this.setFoto(articuloDTO.getFoto());
-		this.setId(articuloDTO.getId());
 		this.setIdDeposito(articuloDTO.getIdDeposito());
 		this.setMarca(articuloDTO.getMarca());
 		this.setMaterial(articuloDTO.getMaterial());
@@ -263,7 +264,6 @@ public class ArticuloBean implements Serializable {
 	}
 	
 	public ArticuloDTO aArticuloDTO(){
-		
 		ArticuloDTO articuloDTO = new ArticuloDTO();
 		articuloDTO.setCantidadDisponible(this.getCantidadDisponible());
 		articuloDTO.setCodArticulo(this.getCodigo());
@@ -273,7 +273,6 @@ public class ArticuloBean implements Serializable {
 		articuloDTO.setFecha(this.getFecha());
 		articuloDTO.setFichaTecnica(this.getFichaTecnica());
 		articuloDTO.setFoto(this.getFoto());
-		articuloDTO.setId(this.getId());
 		articuloDTO.setIdDeposito(this.getIdDeposito());
 		articuloDTO.setMarca(this.getMarca());
 		articuloDTO.setMaterial(this.getMaterial());

@@ -41,7 +41,8 @@ public class ArticuloEJB implements ArticuloEJBRemote, ArticuloEJBLocal {
 		Query q = em.createQuery("from ArticuloBean");
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
-		return salida.stream().map(a -> new ArticuloDTO(a.getId(),a.getNombre(),a.getCodigo(),a.getColor())).collect(Collectors.<ArticuloDTO>toList());
+		//return salida.stream().map(a -> new ArticuloDTO(a.getNombre(),a.getCodigo()).collect(Collectors.<ArticuloDTO>toList()));
+		return null;
 	}
 
 
