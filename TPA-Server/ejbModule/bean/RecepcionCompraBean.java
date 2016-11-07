@@ -16,7 +16,7 @@ public class RecepcionCompraBean {
 	
 	private Integer codigo;
 	
-//	@OneToOne (cascade=CascadeType.ALL)
+//	@OneToOne (cascade=CascadeType.ALL) 
 //	@JoinColumn(name="idSolicitudCompra")
 //	private SolicitudCompraBean solicitudCompra;
 	
