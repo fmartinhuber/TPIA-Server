@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import bean.*;
 import dao.*;
@@ -14,8 +15,6 @@ import dto.ArticuloDTO;
 import dto.RecepcionCompraDTO;
 import dto.SolicitudArticuloDTO;
 import dto.SolicitudCompraDTO;
-import interfaz.ArticuloEJBLocal;
-import negocio.ArticuloEJB;
 
 //Prueba Daro 1er Commit
 
@@ -49,63 +48,15 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		return SolicitudArticuloDao.getInstancia().obtenerArticulosPendientes();
 	}
 	
-	public void crearArticulo(ArticuloBean articulo){
+	public void crearArticulo(ArticuloDTO articulo){
 		
 		ArticuloBean newArticulo = new ArticuloBean();
-				
-		newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
-		newArticulo.setIdDeposito(articulo.getIdDeposito());
-		newArticulo.setCodigo(articulo.getCodigo());
-		newArticulo.setDescripcion(articulo.getDescripcion());
-		newArticulo.setEdadRecomendada(articulo.getEdadRecomendada());
-		newArticulo.setFecha(articulo.getFecha());
-		newArticulo.setFichaTecnica(articulo.getFichaTecnica());
-		newArticulo.setFoto(articulo.getFoto());
-		newArticulo.setMarca(articulo.getMarca());
-		newArticulo.setMaterial(articulo.getMaterial());
-		newArticulo.setNombre(articulo.getNombre());
-		newArticulo.setOrigen(articulo.getOrigen());
-		newArticulo.setPrecio(articulo.getPrecio());
-		newArticulo.setTalle(articulo.getTalle());
-		newArticulo.setColor(articulo.getColor());
-		newArticulo.setTipo(articulo.getTipo());		
+		newArticulo.aArticuloBean(articulo);
 		
-		newArticulo.persistArticulo();
+		em.persist(newArticulo);
 		
 	}
 	
-	public List<ArticuloBean> listarArticulos2(){
-		
-		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
-		ArticuloBean aux;
-		List<ArticuloBean> articulos = ArticuloDao.getInstancia().listarArticulos();
-		
-		for(ArticuloBean a : articulos){
-			aux = new ArticuloBean();
-			aux.setCantidadDisponible(a.getCantidadDisponible());
-			aux.setCodigo(a.getCodigo());
-			aux.setDescripcion(a.getDescripcion());
-			aux.setIdDeposito(a.getIdDeposito());
-			aux.setEdadRecomendada(a.getEdadRecomendada());
-			aux.setFecha(a.getFecha());
-			aux.setFichaTecnica(a.getFichaTecnica());
-			aux.setFoto(a.getFoto());
-			aux.setMarca(a.getMarca());
-			aux.setMaterial(a.getMaterial());
-			aux.setId(a.getId());
-			aux.setNombre(a.getNombre());
-			aux.setOrigen(a.getOrigen());
-			aux.setPrecio(a.getPrecio());
-			aux.setTalle(a.getTalle());
-			aux.setColor(a.getColor());
-			aux.setTipo(a.getTipo());
-			
-			salida.add(aux);
-		}
-		
-		return salida;
-		
-	}
 		
 	
 	public void modificarStockDelArticulo(ArticuloBean articulo){
@@ -118,10 +69,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		}			
 	}
 
-	@Override
-	public void crearArticulo(ArticuloDTO articulo) {
-		
-	}
 
 	@Override
 	public void modificarArticulo(ArticuloDTO articulo) {
@@ -129,20 +76,10 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 
-	@Override
-	public ArrayList<ArticuloDTO> listarArticulos() {
-		
-		ArrayList<ArticuloDTO> salida = new ArrayList<ArticuloDTO>();
-		ArticuloDTO aux;
-		
-		
-		
-		return salida;
-		
-	}
 
 	@Override
 	public void crearSolicitudCompra(SolicitudCompraDTO compraDTO){
+		//Aca pasar DTO->Bean
 		SolicitudCompraBean solicitudCompraBean = new SolicitudCompraBean();
 		em.persist(solicitudCompraBean);
 	}
@@ -161,10 +98,43 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	@Override
 	public List<SolicitudArticuloDTO> solicitudesPendientes() {
-		// TODO Auto-generated method stub
+		//Aca hacer DTO->Bean
+		
 		return null;
 	}
 	
+	@Override
+	public ArticuloDTO buscarArticuloPorCodigo(Integer codArticulo) {
+		
+		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
+	}
+
+	@Override
+	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
+		
+		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();			
+	}	
 	
+	@Override
+	public List<ArticuloDTO> listarArticulos() {
+		// TODO Auto-generated method stub
+		Query q = em.createQuery("from ArticuloBean");
+		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
+		salida = q.getResultList();
+		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
+		return null;
+	}
+
+	@Override
+	public void crearRecepcionCompra(SolicitudCompraDTO solicitudCompraDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
