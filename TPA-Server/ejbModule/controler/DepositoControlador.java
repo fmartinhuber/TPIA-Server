@@ -16,6 +16,7 @@ import dto.ArticuloDTO;
 import dto.ItemSolicitadoArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
+import dto.SolicitudArticuloDTO;
 import dto.SolicitudCompraDTO;
 import interfaz.ArticuloEJBLocal;
 import negocio.ArticuloEJB;
