@@ -170,7 +170,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
 		//actualizar Articulo
 		RecepcionCompraBean recepCompra = new RecepcionCompraBean();
@@ -197,6 +197,12 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			
 			
 		}
+		
+	}
+
+	@Override
+	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
+		// TODO Auto-generated method stub
 		
 	}
 	
