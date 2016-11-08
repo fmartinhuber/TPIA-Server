@@ -14,7 +14,7 @@ import com.sun.org.apache.bcel.internal.generic.IRETURN;
 import bean.*;
 import dao.*;
 import dto.ArticuloDTO;
-import dto.ItemSolicitadoArticuloDTO;
+import dto.ItemSolicitudArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
 import dto.SolicitudArticuloDTO;
@@ -49,7 +49,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	public List<SolicitudArticuloBean> obtenerArticuloSolicitadoPendiente() {
-		return SolicitudArticuloDao.getInstancia().obtenerArticulosPendientes();
+		return SolicitudArticuloDao.obtenerArticulosPendientes();
 	}
 	
 	public void crearArticulo(ArticuloDTO articulo){
@@ -65,7 +65,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	public void modificarStockDelArticulo(ArticuloBean articulo){
 		
-		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(articulo.getCodigo());
+		ArticuloBean newArticulo = ArticuloDao.buscarArticuloPorCodigo(articulo.getCodigo());
 		
 		if(newArticulo != null){
 			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
@@ -91,6 +91,8 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	@Override
 	public ArticuloDTO obtenerArticulosPendientes() {
 		// TODO Auto-generated method stub
+		Query q = em.createQuery("from SolicitudArticuloBean where estado = pendiente");
+		List<SolicitudArticuloBean> salida = q.getResultList();
 		return null;
 	}
 

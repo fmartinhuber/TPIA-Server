@@ -92,21 +92,5 @@ public class SolicitudCompraBean {
 		this.recepcionCompra = recepcionCompra;
 	}
 	
-	public void mergeSolicitudCompra() {
-		SolicitudCompraDao.getInstancia().merge(this);
-	}
-
-	public void persistSolicitudCompra() {
-		SolicitudCompraDao.getInstancia().persist(this);
-	}
-
-	public void updateSolicitudCompra() {
-		SolicitudCompraDao.getInstancia().update(this);
-	}
-
-	public void deleteSolicitudCompra() {
-		SolicitudCompraDao.getInstancia().delete(this);
-	}
-		
 		
 }

@@ -51,20 +51,4 @@ public class ItemRecepcionCompra {
 		this.cantidad = cantidad;
 	}
 	
-	public void mergeItemRecepcionCompra() {
-		ItemRecepcionCompraDao.getInstancia().merge(this);
-	}
-
-	public void persistItemRecepcionCompra() {
-		ItemRecepcionCompraDao.getInstancia().persist(this);
-	}
-
-	public void updateItemRecepcionCompra() {
-		ItemRecepcionCompraDao.getInstancia().update(this);
-	}
-
-	public void deleteItemRecepcionCompra() {
-		ItemRecepcionCompraDao.getInstancia().delete(this);
-	}
-	
 }

@@ -53,20 +53,4 @@ public class RecepcionCompraBean {
 	}
 	
 	
-	public void mergeRecepcionCompra() {
-		RecepcionCompraDao.getInstancia().merge(this);
-	}
-
-	public void persistRecepcionCompra() {
-		RecepcionCompraDao.getInstancia().persist(this);
-	}
-
-	public void updateRecepcionCompra() {
-		RecepcionCompraDao.getInstancia().update(this);
-	}
-
-	public void deleteRecepcionCompra() {
-		RecepcionCompraDao.getInstancia().delete(this);
-	}
-
 }

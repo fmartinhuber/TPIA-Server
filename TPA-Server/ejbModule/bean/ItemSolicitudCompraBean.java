@@ -42,20 +42,4 @@ public class ItemSolicitudCompraBean {
 		this.cantidad = cantidad;
 	}	
 	
-	public void mergeItemSolicitudCompra() {
-		ItemSolicitudCompraDao.getInstancia().merge(this);
-	}
-
-	public void persistItemSolicitudCompra() {
-		ItemSolicitudCompraDao.getInstancia().persist(this);
-	}
-
-	public void updateItemSolicitudCompra() {
-		ItemSolicitudCompraDao.getInstancia().update(this);
-	}
-
-	public void deleteItemSolicitudCompra() {
-		ItemSolicitudCompraDao.getInstancia().delete(this);
-	}
-	
 }

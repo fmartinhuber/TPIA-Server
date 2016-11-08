@@ -268,7 +268,7 @@ public class ArticuloBean implements Serializable {
 		articuloDTO.setCantidadDisponible(this.getCantidadDisponible());
 		articuloDTO.setCodArticulo(this.getCodigo());
 		articuloDTO.setColor(this.getColor());
-		articuloDTO.setDescripcion(this.descripcion);
+		articuloDTO.setDescripcion(this.getDescripcion());
 		articuloDTO.setEdadRecomendada(this.getEdadRecomendada());
 		articuloDTO.setFecha(this.getFecha());
 		articuloDTO.setFichaTecnica(this.getFichaTecnica());

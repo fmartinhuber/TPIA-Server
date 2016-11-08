@@ -7,8 +7,8 @@ import dao.*;
 //Daro: Este Bean relaciona el articulo con la cantidad solicitada
 
 @Entity
-@Table (name="ItemSolicitadoArticulo")
-public class ItemSolicitadoArticuloBean {
+@Table (name="ItemSolicitudArticulo")
+public class ItemSolicitudArticuloBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -18,22 +18,15 @@ public class ItemSolicitadoArticuloBean {
 	@JoinColumn(name="idArticulo")
 	private ArticuloBean articulo;
 	
-	@ManyToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="idSolicitudArticulo")
-	private SolicitudArticuloBean solicitudArticulo;
-	
 	private Integer cantidad;
 		
-	// Constructor
-	
-	public ItemSolicitadoArticuloBean(ArticuloBean articulo, SolicitudArticuloBean solicitudArticulo, Integer cantidad) {
+	public ItemSolicitudArticuloBean(ArticuloBean articulo, Integer cantidad) {
 		super();
 		this.articulo = articulo;
-		this.solicitudArticulo = solicitudArticulo;
 		this.cantidad = cantidad;
 	}
 
-	public ItemSolicitadoArticuloBean() {
+	public ItemSolicitudArticuloBean() {
 		super();
 	}
 	
@@ -61,20 +54,5 @@ public class ItemSolicitadoArticuloBean {
 		this.cantidad = cantidad;
 	}
 	
-	public void mergeItemSolicitadoArticulo() {
-		ItemSolicitadoArticuloDao.getInstancia().merge(this);
-	}
-
-	public void persistItemSolicitadoArticulo() {
-		ItemSolicitadoArticuloDao.getInstancia().persist(this);
-	}
-
-	public void updateItemSolicitadoArticulo() {
-		ItemSolicitadoArticuloDao.getInstancia().update(this);
-	}
-
-	public void deleteItemSolicitadoArticulo() {
-		ItemSolicitadoArticuloDao.getInstancia().delete(this);
-	}
 	
 }

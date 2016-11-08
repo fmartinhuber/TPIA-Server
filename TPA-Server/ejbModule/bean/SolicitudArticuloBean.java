@@ -19,8 +19,8 @@ public class SolicitudArticuloBean {
 	private Date fechaEntrega;
 	private Integer idModulo;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private List<ItemSolicitadoArticuloBean> itemsSolicitudArticulo;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
 	// Constructor
 
@@ -66,20 +66,4 @@ public class SolicitudArticuloBean {
 		this.idModulo = idModulo;
 	}
 	
-	public void mergeSolicitudArticulo() {
-		SolicitudArticuloDao.getInstancia().merge(this);
-	}
-
-	public void persistSolicitudArticulo() {
-		SolicitudArticuloDao.getInstancia().persist(this);
-	}
-
-	public void updateSolicitudArticulo() {
-		SolicitudArticuloDao.getInstancia().update(this);
-	}
-
-	public void deleteSolicitudArticulo() {
-		SolicitudArticuloDao.getInstancia().delete(this);
-	}
-		
 }

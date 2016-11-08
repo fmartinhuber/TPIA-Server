@@ -9,16 +9,6 @@ import bean.*;
 public class ArticuloDao extends HibernateDao{
 
 	
-	public static ArticuloDao instancia;
-	
-	private ArticuloDao(){}
-	
-	public static ArticuloDao getInstancia(){
-		if(instancia == null)
-			instancia = new ArticuloDao();
-		return instancia;
-	}
-	
 	
 	public List<ArticuloBean> listarArticulos(){
 //		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -41,7 +31,7 @@ public class ArticuloDao extends HibernateDao{
 		return 1;
 	}	
 	
-	public ArticuloBean buscarArticuloPorCodigo(int codigo){
+	public static ArticuloBean buscarArticuloPorCodigo(int codigo){
 		
 //		Session s = HibernateUtil.getSessionFactory().openSession();
 //		org.hibernate.Query query = s.createQuery("select a from ArticuloBean a where a.codArticulo = :codigoArticulo");
