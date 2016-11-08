@@ -12,6 +12,7 @@ import bean.*;
 import dao.*;
 import dto.ArticuloDTO;
 import dto.RecepcionCompraDTO;
+import dto.SolicitudArticuloDTO;
 import dto.SolicitudCompraDTO;
 import interfaz.ArticuloEJBLocal;
 import negocio.ArticuloEJB;
@@ -162,6 +163,11 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public List<SolicitudCompraDTO> solicitudesPendientes() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
+		em.persist(solicitudArticuloDTO);
 	}
 	
 	
