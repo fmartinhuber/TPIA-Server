@@ -8,9 +8,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.sun.org.apache.bcel.internal.generic.IRETURN;
+
 import bean.*;
 import dao.*;
 import dto.ArticuloDTO;
+import dto.ItemSolicitadoArticuloDTO;
+import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
 import dto.SolicitudCompraDTO;
 import interfaz.ArticuloEJBLocal;
@@ -162,6 +166,36 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public List<SolicitudCompraDTO> solicitudesPendientes() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
+		//actualizar Articulo
+		RecepcionCompraBean recepCompra = new RecepcionCompraBean();
+		
+		//Convertimos la solicitud de compra DTO a Recepción de compra BEAN
+		
+		recepCompra.setCodigo(solCompraDTO.getCodigo());
+		
+		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {
+			//buscamos el itemsSolicitud de Compra para gravarlo como ItemsRecepcionCompra
+			
+			//Buscamos el articulo
+			ArticuloBean art; 
+			art = (ArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
+			.setParameter("codArticulo", itSolDTO.getArticulo().getCodArticulo())
+			.getSingleResult();
+			
+			//Creamos el Items de la recepción de compra
+			
+			ItemRecepcionCompra itRecepCompra = new ItemRecepcionCompra();
+			itRecepCompra.setArticulo(art);
+			itRecepCompra.setCantidad(itSolDTO.getCantidad());
+			
+			
+			
+		}
+		
 	}
 	
 	
