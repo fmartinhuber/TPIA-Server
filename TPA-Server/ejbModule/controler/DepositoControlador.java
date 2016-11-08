@@ -170,6 +170,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
 		//actualizar Articulo
 		RecepcionCompraBean recepCompra = new RecepcionCompraBean();
