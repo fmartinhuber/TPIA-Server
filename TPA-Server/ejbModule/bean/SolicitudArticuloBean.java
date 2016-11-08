@@ -65,5 +65,13 @@ public class SolicitudArticuloBean {
 	public void setIdModulo(Integer idModulo) {
 		this.idModulo = idModulo;
 	}
+
+	public List<ItemSolicitudArticuloBean> getItemsSolicitudArticulo() {
+		return itemsSolicitudArticulo;
+	}
+
+	public void setItemsSolicitudArticulo(List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
 	
 }

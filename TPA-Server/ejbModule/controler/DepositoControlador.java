@@ -9,18 +9,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.sun.org.apache.bcel.internal.generic.IRETURN;
-
-import bean.*;
-import dao.*;
+import bean.ArticuloBean;
+import bean.ItemRecepcionCompra;
+import bean.RecepcionCompraBean;
+import bean.SolicitudArticuloBean;
+import bean.SolicitudCompraBean;
+import dao.ArticuloDao;
+import dao.SolicitudArticuloDao;
 import dto.ArticuloDTO;
-import dto.ItemSolicitudArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
 import dto.SolicitudArticuloDTO;
 import dto.SolicitudCompraDTO;
+import util.Utils;
 
-//Prueba Daro 1er Commit
 
 /**
  * Desde este controlador se deberian de llamar a todos los servicios
@@ -48,8 +50,12 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	}
 
-	public List<SolicitudArticuloBean> obtenerArticuloSolicitadoPendiente() {
-		return SolicitudArticuloDao.obtenerArticulosPendientes();
+	public List <SolicitudArticuloDTO> obtenerSolicitudArticuloPendiente() {
+		
+		Query q = em.createQuery("from SolicitudArticuloBean where estado = pendiente");
+		List<SolicitudArticuloBean> salida = q.getResultList();
+		return Utils.solicitudArticuloBeanToDTO(salida);
+		
 	}
 	
 	public void crearArticulo(ArticuloDTO articulo){
@@ -88,13 +94,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		em.persist(solicitudCompraBean);
 	}
 
-	@Override
-	public ArticuloDTO obtenerArticulosPendientes() {
-		// TODO Auto-generated method stub
-		Query q = em.createQuery("from SolicitudArticuloBean where estado = pendiente");
-		List<SolicitudArticuloBean> salida = q.getResultList();
-		return null;
-	}
 
 	@Override
 	public void recepcionCompra(RecepcionCompraDTO compraDTO) {
@@ -161,12 +160,14 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	@Override
 	public List<ArticuloDTO> listarArticulos() {
 		// TODO Auto-generated method stub
+		
 		Query q = em.createQuery("from ArticuloBean");
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
 		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
 		return null;
 	}
+
 
 
 }
