@@ -22,7 +22,7 @@ public class SolicitudCompraBean {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idSolicitudesCompra")
-	private List<ItemSolicitudCompraBean> solicitudesCompra;
+	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idRecepcionesCompra")
@@ -76,12 +76,12 @@ public class SolicitudCompraBean {
 		this.solicitudesArticulos = solicitudesArticulos;
 	}
 
-	public List<ItemSolicitudCompraBean> getSolicitudesCompra() {
-		return solicitudesCompra;
+	public List<ItemSolicitudCompraBean> getItemsSolicitudesCompra() {
+		return itemsSolicitudesCompra;
 	}
 
-	public void setSolicitudesCompra(List<ItemSolicitudCompraBean> solicitudesCompra) {
-		this.solicitudesCompra = solicitudesCompra;
+	public void setItemsSolicitudesCompra(List<ItemSolicitudCompraBean> solicitudesCompra) {
+		this.itemsSolicitudesCompra = solicitudesCompra;
 	}
 
 	public RecepcionCompraBean getRecepcionCompra() {
