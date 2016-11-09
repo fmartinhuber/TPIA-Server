@@ -52,7 +52,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	public List <SolicitudArticuloDTO> obtenerSolicitudArticuloPendiente() {
 		
-		Query q = em.createQuery("from SolicitudArticuloBean where estado = pendiente");
+		Query q = em.createQuery("Select s from SolicitudArticuloBean S where s.estado =:estado").setParameter("estado", "pendiente");
 		List<SolicitudArticuloBean> salida = q.getResultList();
 		return Utils.solicitudArticuloBeanToDTO(salida);
 		
@@ -62,7 +62,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 		ArticuloBean newArticulo = new ArticuloBean();
 		newArticulo.aArticuloBean(articulo);
-		
 		em.persist(newArticulo);
 		
 	}
