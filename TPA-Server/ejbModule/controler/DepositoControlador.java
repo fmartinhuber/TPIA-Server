@@ -111,31 +111,32 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	@Override
 
 	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
-		//actualizar Articulo
-		RecepcionCompraBean recepCompra = new RecepcionCompraBean();
 		
 		//Convertimos la solicitud de compra DTO a Recepción de compra BEAN
+
+		RecepcionCompraBean recepCompra = new RecepcionCompraBean();		
+		recepCompra.setCodigo(solCompraDTO.getCodigo());										// Seteamos el codigo de la recepción de compra
+		List<ItemRecepcionCompra> itemsRecepCompra = new ArrayList<ItemRecepcionCompra>(); 		// Creamos la lista de Items de recepción de compra
 		
-		recepCompra.setCodigo(solCompraDTO.getCodigo());
-		
-		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {
-			//buscamos el itemsSolicitud de Compra para gravarlo como ItemsRecepcionCompra
+		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {		// Recorremos los items de la solicitud de compra a convertir en items recepcion
 			
-			//Buscamos el articulo
+			// Obtenemos el articulo de la db por el codigo
 			ArticuloBean art; 
 			art = (ArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
 			.setParameter("codArticulo", itSolDTO.getArticulo().getCodArticulo())
 			.getSingleResult();
 			
-			//Creamos el Items de la recepción de compra
-			
+			// Creamos el Items de la recepción de compra y seteamos articulo y cantidad
 			ItemRecepcionCompra itRecepCompra = new ItemRecepcionCompra();
 			itRecepCompra.setArticulo(art);
 			itRecepCompra.setCantidad(itSolDTO.getCantidad());
 			
-			
-			
+			// Agregamos el item creado al array
+			itemsRecepCompra.add(itRecepCompra);
 		}
+		
+		recepCompra.setRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
+		em.persist(recepCompra);									// persistimos la recepción de compra
 		
 	}
 
