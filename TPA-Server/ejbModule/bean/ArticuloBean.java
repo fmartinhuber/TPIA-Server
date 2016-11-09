@@ -5,7 +5,6 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import dao.ArticuloDao;
 import dto.ArticuloDTO;
 
 @Entity
@@ -220,27 +219,6 @@ public class ArticuloBean implements Serializable {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	// Metodos de persistencia
-	
-	public void mergeArticulo() {
-		ArticuloDao.getInstancia().merge(this);
-	}
-
-	public void persistArticulo() {
-		ArticuloDao.getInstancia().persist(this);
-	}
-
-	public void updateArticulo() {
-		ArticuloDao.getInstancia().update(this);
-	}
-
-	public void deleteArticulo() {
-		ArticuloDao.getInstancia().delete(this);
-	}
-	
-	
-	
 	
 	// Métodos de transformaciones
 	

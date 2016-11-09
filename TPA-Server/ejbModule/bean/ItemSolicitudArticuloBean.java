@@ -12,7 +12,7 @@ public class ItemSolicitudArticuloBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer idItemSolicitadoArticulo;
+	private Integer idItemSolicitudArticulo;
 	
 	@OneToOne (cascade=CascadeType.ALL)
 	@JoinColumn(name="idArticulo")
@@ -30,12 +30,12 @@ public class ItemSolicitudArticuloBean {
 		super();
 	}
 	
-	public Integer getIdItemSolicitadoArticulo() {
-		return idItemSolicitadoArticulo;
+	public Integer getIdItemSolicitudArticulo() {
+		return idItemSolicitudArticulo;
 	}
 
-	public void setIdItemSolicitadoArticulo(Integer idItemSolicitadoArticulo) {
-		this.idItemSolicitadoArticulo = idItemSolicitadoArticulo;
+	public void setIdItemSolicitudArticulo(Integer idItemSolicitadoArticulo) {
+		this.idItemSolicitudArticulo = idItemSolicitadoArticulo;
 	}
 
 	public ArticuloBean getArticulo() {

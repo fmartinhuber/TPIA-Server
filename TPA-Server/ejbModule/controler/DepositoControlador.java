@@ -72,10 +72,10 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 		ArticuloBean newArticulo = ArticuloDao.buscarArticuloPorCodigo(articulo.getCodigo());
 		
-		if(newArticulo != null){
-			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
-			newArticulo.updateArticulo();
-		}			
+//		if(newArticulo != null){
+//			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
+//			newArticulo.updateArticulo();
+//		}			
 	}
 
 
