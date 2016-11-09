@@ -133,6 +133,11 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			
 			// Agregamos el item creado al array
 			itemsRecepCompra.add(itRecepCompra);
+			
+			//Actualiza Stock
+			Integer newStock = art.getCantidadDisponible() + itRecepCompra.getCantidad();
+			art.setCantidadDisponible(newStock);
+			em.merge(art);			
 		}
 		
 		recepCompra.setRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
