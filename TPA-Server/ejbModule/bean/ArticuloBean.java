@@ -76,6 +76,7 @@ public class ArticuloBean implements Serializable {
 		this.material = material;
 		this.cantidadDisponible = cantidadDisponible;
 		this.color = color;
+		
 	}
 	
 	// Getters y Setters
