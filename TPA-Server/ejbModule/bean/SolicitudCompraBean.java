@@ -32,10 +32,12 @@ public class SolicitudCompraBean {
 	
 	private Date fechaCreacion;
 	
-	// Constructor
+	
 
 	public SolicitudCompraBean() {}
 
+	
+	
 	public Integer getIdSolicitudCompra() {
 		return idSolicitudCompra;
 	}

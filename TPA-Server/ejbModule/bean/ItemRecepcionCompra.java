@@ -13,7 +13,7 @@ public class ItemRecepcionCompra {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idItemRecepcionCompra;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "idArticulo")
 	private ArticuloBean articulo;
 	
@@ -23,10 +23,13 @@ public class ItemRecepcionCompra {
 	
 	private Integer cantidad;
 	
-	// Constructor
+	
+	
 
 	public ItemRecepcionCompra() {}
 
+	
+	
 	public Integer getIdItemRecepcionCompra() {
 		return idItemRecepcionCompra;
 	}

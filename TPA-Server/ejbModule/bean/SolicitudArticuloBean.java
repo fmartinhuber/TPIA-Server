@@ -22,10 +22,12 @@ public class SolicitudArticuloBean {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
-	// Constructor
+	
 
 	public SolicitudArticuloBean() {}
 
+	
+	
 	public Integer getIdSolicitudArticulo() {
 		return idSolicitudArticulo;
 	}

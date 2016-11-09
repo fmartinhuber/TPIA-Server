@@ -50,8 +50,8 @@ public class ArticuloBean implements Serializable {
 	@Column(nullable = true)
 	private Integer cantidadDisponible;	
 	
-	// Constructores
-		
+	
+	
 	public ArticuloBean(){}
 
 	public ArticuloBean(Integer id, String idDeposito, Integer codArticulo, String nombre, String descripcion, String marca, String origen,
@@ -78,7 +78,7 @@ public class ArticuloBean implements Serializable {
 		
 	}
 	
-	// Getters y Setters
+	
 
 	public Integer getId() {
 		return id;

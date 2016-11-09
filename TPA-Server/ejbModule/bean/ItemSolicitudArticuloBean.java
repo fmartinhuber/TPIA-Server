@@ -19,6 +19,9 @@ public class ItemSolicitudArticuloBean {
 	private ArticuloBean articulo;
 	
 	private Integer cantidad;
+	
+	
+
 		
 	public ItemSolicitudArticuloBean(ArticuloBean articulo, Integer cantidad) {
 		super();
@@ -29,6 +32,8 @@ public class ItemSolicitudArticuloBean {
 	public ItemSolicitudArticuloBean() {
 		super();
 	}
+	
+	
 	
 	public Integer getIdItemSolicitudArticulo() {
 		return idItemSolicitudArticulo;

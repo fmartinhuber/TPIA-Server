@@ -1,4 +1,4 @@
---Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente
+	--Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente
 
 drop table DetalleMovimientoStock
 go
@@ -25,46 +25,3 @@ go
 
 
 
-
-	-- Select * from
-
-select * from Articulo
-
-select * from DetalleMovimientoStock
-
-select * from ItemRecepcionCompra
-
-select * from ItemSolicitadoArticulo
-
-select * from ItemSolicitudCompra
-
-select * from RecepcionCompra
-
-select * from SolicitudArticulo
-
-select * from SolicitudCompra
-
-
-
-
-
-
-
-
-select * from RecepcionCompra
-select * from ItemRecepcionCompra
-
-select * from solicitudCompra
-select * from ItemSolicitudCompra
-
-select * from SolicitudArticulo
-select * from ItemSolicitadoArticulo
-
-insert into RecepcionCompra values(10)
-insert into ItemRecepcionCompra values(10, 1)
-
-insert into solicitudCompra values(10, 'pendiente01', 1, 1)
-insert into ItemSolicitudCompra values(10, 1, 1)
-
-insert into solicitudArticulo values(10, 'estado01', 1, 1, 1)
-insert into ItemSolicitadoArticulo values(10, 1, 1)
