@@ -68,7 +68,7 @@ public class ItemSolicitudArticuloBean {
 		
 		ArticuloBean articuloBean = new ArticuloBean();
 		articuloBean.aArticuloBean(itemSolicitudArticuloDTO.getArticulo());
-		
+		this.setArticulo(articuloBean);
 	}
 
 	public ItemSolicitudArticuloDTO aItemSolicitudArticuloDTO() {

@@ -57,8 +57,7 @@ public class ItemSolicitudCompraBean {
 		
 		ArticuloBean articulo = new ArticuloBean();
 		articulo.aArticuloBean(itemSolicitudCompraDTO.getArticulo());
-		
-		
+		this.setArticulo(articulo);
 	}
 
 	public ItemSolicitudCompraDTO aItemSolicitudCompraDTO() {

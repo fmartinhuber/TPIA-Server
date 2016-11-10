@@ -64,7 +64,7 @@ public class ItemRecepcionCompraBean {
 		
 		ArticuloBean articuloBean = new ArticuloBean();
 		articuloBean.aArticuloBean(itemRecepcionCompraDTO.getArticulo());
-		
+		this.setArticulo(articuloBean);
 	}
 
 	public ItemRecepcionCompraDTO aItemRecepcionCompraDTO() {
