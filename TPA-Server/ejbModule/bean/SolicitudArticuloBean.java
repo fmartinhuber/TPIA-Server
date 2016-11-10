@@ -23,16 +23,24 @@ public class SolicitudArticuloBean {
 	@JoinColumn(name="idSolicitudArticulo")
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	@JoinColumn(name="idSolicitudesCompra")
-//	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
-	
 	
 
-	public SolicitudArticuloBean() {}
+	public SolicitudArticuloBean() {
+		
+	}
+	
+	public SolicitudArticuloBean(Integer idSolicitudArticulo, Integer codigo, String estado, Date fechaEntrega,
+			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+		this.idSolicitudArticulo = idSolicitudArticulo;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.fechaEntrega = fechaEntrega;
+		this.idModulo = idModulo;
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
 
-	
-	
+
+
 	public Integer getIdSolicitudArticulo() {
 		return idSolicitudArticulo;
 	}

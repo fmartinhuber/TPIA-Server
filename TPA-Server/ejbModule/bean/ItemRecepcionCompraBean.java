@@ -10,23 +10,27 @@ public class ItemRecepcionCompraBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idItemRecepcionCompra;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idArticulo")
 	private ArticuloBean articulo;
-	
-//	@ManyToOne (cascade=CascadeType.ALL)
-//	@JoinColumn(name="idRecepcionCompra")
-//	private RecepcionCompraBean recepcionCompra;
 	
 	private Integer cantidad;
 	
 	
 	
 
-	public ItemRecepcionCompraBean() {}
+	public ItemRecepcionCompraBean() {
+		
+	}
 
-	
-	
+	public ItemRecepcionCompraBean(Integer idItemRecepcionCompra, ArticuloBean articulo, Integer cantidad) {
+		this.idItemRecepcionCompra = idItemRecepcionCompra;
+		this.articulo = articulo;
+		this.cantidad = cantidad;
+	}
+
+
+
 	public Integer getIdItemRecepcionCompra() {
 		return idItemRecepcionCompra;
 	}

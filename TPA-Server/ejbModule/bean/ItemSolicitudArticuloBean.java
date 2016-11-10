@@ -14,25 +14,23 @@ public class ItemSolicitudArticuloBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idItemSolicitudArticulo;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="idArticulo")
 	private ArticuloBean articulo;
 	
-//	@ManyToOne (cascade=CascadeType.ALL)
-//	@JoinColumn(name="idSolicitudArticulo")
-//	private SolicitudArticuloBean solicitud;
-	
 	private Integer cantidad;
 	
+	
 		
-	public ItemSolicitudArticuloBean(ArticuloBean articulo, Integer cantidad) {
-		super();
-		this.articulo = articulo;
-		this.cantidad = cantidad;
-	}
+
 
 	public ItemSolicitudArticuloBean() {
-		super();
+
+	}
+	
+	public ItemSolicitudArticuloBean(ArticuloBean articulo, Integer cantidad) {
+		this.articulo = articulo;
+		this.cantidad = cantidad;
 	}
 	
 	

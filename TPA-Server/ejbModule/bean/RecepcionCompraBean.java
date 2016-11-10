@@ -24,10 +24,20 @@ public class RecepcionCompraBean {
 
 	
 
-	public RecepcionCompraBean() {}
+	public RecepcionCompraBean() {
+		
+	}
 	
-	
-	
+	public RecepcionCompraBean(Integer idRecepcionCompra, Integer codigo,
+			List<ItemRecepcionCompraBean> itemsRecepcionesCompra, List<SolicitudCompraBean> solicitudesCompra) {
+		this.idRecepcionCompra = idRecepcionCompra;
+		this.codigo = codigo;
+		this.itemsRecepcionesCompra = itemsRecepcionesCompra;
+		this.solicitudesCompra = solicitudesCompra;
+	}
+
+
+
 	public Integer getIdRecepcionCompra() {
 		return idRecepcionCompra;
 	}
