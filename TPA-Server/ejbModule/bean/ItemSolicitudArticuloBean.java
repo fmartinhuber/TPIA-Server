@@ -18,9 +18,9 @@ public class ItemSolicitudArticuloBean {
 	@JoinColumn(name="idArticulo")
 	private ArticuloBean articulo;
 	
-	@ManyToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="idSolicitudArticulo")
-	private SolicitudArticuloBean solicitud;
+//	@ManyToOne (cascade=CascadeType.ALL)
+//	@JoinColumn(name="idSolicitudArticulo")
+//	private SolicitudArticuloBean solicitud;
 	
 	private Integer cantidad;
 	
@@ -63,11 +63,12 @@ public class ItemSolicitudArticuloBean {
 		this.cantidad = cantidad;
 	}
 
-	public SolicitudArticuloBean getSolicitud() {
-		return solicitud;
-	}
+//	public SolicitudArticuloBean getSolicitud() {
+//		return solicitud;
+//	}
+//
+//	public void setSolicitud(SolicitudArticuloBean solicitud) {
+//		this.solicitud = solicitud;
+//	}
 
-	public void setSolicitud(SolicitudArticuloBean solicitud) {
-		this.solicitud = solicitud;
-	}
 }

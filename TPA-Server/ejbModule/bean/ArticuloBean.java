@@ -15,8 +15,7 @@ public class ArticuloBean implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
-	
+	private Integer id;	
 	@Column(nullable = true)
 	private String idDeposito; 	
 	@Column(nullable = true)

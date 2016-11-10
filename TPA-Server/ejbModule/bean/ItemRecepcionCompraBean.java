@@ -2,12 +2,9 @@ package bean;
 
 import javax.persistence.*;
 
-import dao.*;
-
-
 @Entity
 @Table(name = "ItemRecepcionCompra")
-public class ItemRecepcionCompra {
+public class ItemRecepcionCompraBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -26,7 +23,7 @@ public class ItemRecepcionCompra {
 	
 	
 
-	public ItemRecepcionCompra() {}
+	public ItemRecepcionCompraBean() {}
 
 	
 	

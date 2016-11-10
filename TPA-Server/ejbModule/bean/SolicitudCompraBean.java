@@ -17,16 +17,17 @@ public class SolicitudCompraBean {
 	private Integer codigo; 
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="idSolicitudesCompra")
+	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
+
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idSolicitudesArticulo")
 	private List<SolicitudArticuloBean> solicitudesArticulos;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idSolicitudesCompra")
-	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idRecepcionesCompra")
-	private RecepcionCompraBean recepcionCompra;
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name="idRecepcionesCompra")
+	//private RecepcionCompraBean recepcionCompra;
 	
 	private String pendiente;
 	
@@ -86,13 +87,13 @@ public class SolicitudCompraBean {
 		this.itemsSolicitudesCompra = solicitudesCompra;
 	}
 
-	public RecepcionCompraBean getRecepcionCompra() {
-		return recepcionCompra;
-	}
-
-	public void setRecepcionCompra(RecepcionCompraBean recepcionCompra) {
-		this.recepcionCompra = recepcionCompra;
-	}
+//	public RecepcionCompraBean getRecepcionCompra() {
+//		return recepcionCompra;
+//	}
+//
+//	public void setRecepcionCompra(RecepcionCompraBean recepcionCompra) {
+//		this.recepcionCompra = recepcionCompra;
+//	}
 	
 		
 }

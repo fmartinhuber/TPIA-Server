@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import bean.ArticuloBean;
-import bean.ItemRecepcionCompra;
+import bean.ItemRecepcionCompraBean;
 import bean.RecepcionCompraBean;
 import bean.SolicitudArticuloBean;
 import bean.SolicitudCompraBean;
@@ -115,7 +115,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 		RecepcionCompraBean recepCompra = new RecepcionCompraBean();		
 		recepCompra.setCodigo(solCompraDTO.getCodigo());										// Seteamos el codigo de la recepción de compra
-		List<ItemRecepcionCompra> itemsRecepCompra = new ArrayList<ItemRecepcionCompra>(); 		// Creamos la lista de Items de recepción de compra
+		List<ItemRecepcionCompraBean> itemsRecepCompra = new ArrayList<ItemRecepcionCompraBean>(); 		// Creamos la lista de Items de recepción de compra
 		
 		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {		// Recorremos los items de la solicitud de compra a convertir en items recepcion
 			
@@ -126,7 +126,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			.getSingleResult();
 			
 			// Creamos el Items de la recepción de compra y seteamos articulo y cantidad
-			ItemRecepcionCompra itRecepCompra = new ItemRecepcionCompra();
+			ItemRecepcionCompraBean itRecepCompra = new ItemRecepcionCompraBean();
 			itRecepCompra.setArticulo(art);
 			itRecepCompra.setCantidad(itSolDTO.getCantidad());
 			
@@ -139,7 +139,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			em.merge(art);			
 		}
 		
-		recepCompra.setRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
+		recepCompra.setItemsRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
 		em.persist(recepCompra);									// persistimos la recepción de compra
 		
 	}

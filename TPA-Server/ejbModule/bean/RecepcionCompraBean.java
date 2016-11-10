@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import dao.*;
-
 @Entity
 @Table (name="RecepcionCompra")
 public class RecepcionCompraBean {
@@ -17,9 +15,13 @@ public class RecepcionCompraBean {
 	private Integer codigo;
 		
 	@OneToMany (cascade=CascadeType.ALL)
-	@JoinColumn(name="idItemRecepcionCompra")
-	private List<ItemRecepcionCompra> recepcionesCompra;
+	@JoinColumn(name="idRecepcionCompra")
+	private List<ItemRecepcionCompraBean> itemsRecepcionesCompra;
 	
+	@OneToMany (cascade=CascadeType.ALL)
+	@JoinColumn(name="idSolicitudCompra")
+	private List<SolicitudCompraBean> solicitudesCompra;
+
 	
 
 	public RecepcionCompraBean() {}
@@ -42,12 +44,27 @@ public class RecepcionCompraBean {
 		this.codigo = codigo;
 	}
 
-	public List<ItemRecepcionCompra> getRecepcionesCompra() {
-		return recepcionesCompra;
+
+	public List<ItemRecepcionCompraBean> getItemsRecepcionesCompra() {
+		return itemsRecepcionesCompra;
 	}
 
-	public void setRecepcionesCompra(List<ItemRecepcionCompra> recepcionesCompra) {
-		this.recepcionesCompra = recepcionesCompra;
+
+
+	public void setItemsRecepcionesCompra(List<ItemRecepcionCompraBean> itemsRecepcionesCompra) {
+		this.itemsRecepcionesCompra = itemsRecepcionesCompra;
+	}
+
+
+
+	public List<SolicitudCompraBean> getSolicitudesCompra() {
+		return solicitudesCompra;
+	}
+
+
+
+	public void setSolicitudesCompra(List<SolicitudCompraBean> solicitudesCompra) {
+		this.solicitudesCompra = solicitudesCompra;
 	}
 	
 	
