@@ -24,11 +24,9 @@ public class SolicitudArticuloBean {
 	@JoinColumn(name="idSolicitudArticulo")
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
-	
+	// Constructores
 
-	public SolicitudArticuloBean() {
-		
-	}
+	public SolicitudArticuloBean() {}
 	
 	public SolicitudArticuloBean(Integer idSolicitudArticulo, Integer codigo, String estado, Date fechaEntrega,
 			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
@@ -108,6 +106,27 @@ public class SolicitudArticuloBean {
 			listaSolicitudesArticulo.add(itemSolicitudArticuloBean);
 		}
 		this.setItemsSolicitudArticulo(listaSolicitudesArticulo);
+	}
+	
+	public SolicitudArticuloDTO aSolicitudArticuloDTO(){
+		
+		SolicitudArticuloDTO solicitudArticuloDTO = new SolicitudArticuloDTO();
+		
+		solicitudArticuloDTO.setCodigo(this.getCodigo());
+		solicitudArticuloDTO.setEstado(this.getEstado());
+		solicitudArticuloDTO.setFechaEntrega(this.getFechaEntrega());
+		solicitudArticuloDTO.setIdModulo(this.getIdModulo());
+		
+		List<ItemSolicitudArticuloDTO> listaItemsSolicitudArticulo = new ArrayList<ItemSolicitudArticuloDTO>();
+		for(int i=0; i<this.getItemsSolicitudArticulo().size(); i++){
+			
+			ItemSolicitudArticuloDTO itemSolicitudArticuloDTO = new ItemSolicitudArticuloDTO();
+			itemSolicitudArticuloDTO = this.getItemsSolicitudArticulo().get(i).aItemSolicitudArticuloDTO();
+			listaItemsSolicitudArticulo.add(itemSolicitudArticuloDTO);
+		}
+		solicitudArticuloDTO.setItemsSolicitudArticulo(listaItemsSolicitudArticulo);
+		
+		return solicitudArticuloDTO;
 		
 	}
 	

@@ -132,6 +132,35 @@ public class SolicitudCompraBean {
 			listaSolicitudesArticulo.add(solicitudArticuloBean);
 		}
 		this.setSolicitudesArticulos(listaSolicitudesArticulo);
+	}
+	
+	public SolicitudCompraDTO aSolicitudCompraDTO(){
+		
+		SolicitudCompraDTO solicitudCompraDTO = new SolicitudCompraDTO();
+		
+		solicitudCompraDTO.setCodigo(this.getCodigo());
+		solicitudCompraDTO.setFechaCreacion(this.getFechaCreacion());
+		solicitudCompraDTO.setPendiente(this.getPendiente());
+		
+		List<SolicitudArticuloDTO> listaSolicitudesArticuloDTO = new ArrayList<SolicitudArticuloDTO>();
+		for(int i=0; i<this.getSolicitudesArticulos().size(); i++){
+			
+			SolicitudArticuloDTO solicitudArticuloDTO = new SolicitudArticuloDTO();
+			solicitudArticuloDTO = this.getSolicitudesArticulos().get(i).aSolicitudArticuloDTO();
+			listaSolicitudesArticuloDTO.add(solicitudArticuloDTO);
+		}
+		
+		List<ItemSolicitudCompraDTO> listaSolicitudCompraDTO = new ArrayList<ItemSolicitudCompraDTO>();
+		for(int i=0; i<this.getItemsSolicitudesCompra().size(); i++){
+			
+			ItemSolicitudCompraDTO itemSolicitudCompraDTO = new ItemSolicitudCompraDTO();
+			itemSolicitudCompraDTO = this.getItemsSolicitudesCompra().get(i).aItemSolicitudCompraDTO();
+			listaSolicitudCompraDTO.add(itemSolicitudCompraDTO);
+		}
+		
+		solicitudCompraDTO.setSolicitudesArticulos(listaSolicitudesArticuloDTO);
+		solicitudCompraDTO.setItemsSolicitudesCompra(listaSolicitudCompraDTO);
+		return solicitudCompraDTO;
 		
 	}
 	

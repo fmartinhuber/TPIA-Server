@@ -2,6 +2,7 @@ package bean;
 
 import javax.persistence.*;
 
+import dto.ArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 
 @Entity
@@ -57,6 +58,20 @@ public class ItemSolicitudCompraBean {
 		ArticuloBean articulo = new ArticuloBean();
 		articulo.aArticuloBean(itemSolicitudCompraDTO.getArticulo());
 		
+		
+	}
+
+	public ItemSolicitudCompraDTO aItemSolicitudCompraDTO() {
+
+		ItemSolicitudCompraDTO itemSolicitudCompraDTO = new ItemSolicitudCompraDTO();
+		
+		itemSolicitudCompraDTO.setCantidad(this.getCantidad());
+		
+		ArticuloDTO articuloDTO = new ArticuloDTO();
+		articuloDTO = this.getArticulo().aArticuloDTO();
+		itemSolicitudCompraDTO.setArticulo(articuloDTO);
+		
+		return itemSolicitudCompraDTO;
 		
 	}	
 	

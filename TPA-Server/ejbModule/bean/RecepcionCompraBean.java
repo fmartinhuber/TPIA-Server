@@ -96,6 +96,33 @@ public class RecepcionCompraBean {
 			listaSolicitudCompraBean.add(solicitudCompraBean);
 		}
 		this.setSolicitudesCompra(listaSolicitudCompraBean);
+	}
+	
+	public RecepcionCompraDTO aRecepcionCompraDTO(){
+		
+		RecepcionCompraDTO recepcionCompraDTO = new RecepcionCompraDTO();
+		
+		recepcionCompraDTO.setCodigo(this.getCodigo());
+		
+		List<SolicitudCompraDTO> listaSolicitudesCompraDTO = new ArrayList<SolicitudCompraDTO>();
+		for(int i=0; i<this.getSolicitudesCompra().size(); i++){
+			
+			SolicitudCompraDTO solicitudCompraDTO = new SolicitudCompraDTO();
+			solicitudCompraDTO = this.getSolicitudesCompra().get(i).aSolicitudCompraDTO();
+			listaSolicitudesCompraDTO.add(solicitudCompraDTO);
+		}
+		
+		List<ItemRecepcionCompraDTO> listaItemsRecepcionCompraDTO = new ArrayList<ItemRecepcionCompraDTO>();
+		for(int i=0; i<this.getItemsRecepcionesCompra().size(); i++){
+			
+			ItemRecepcionCompraDTO itemRecepcionCompraDTO = new ItemRecepcionCompraDTO();
+			itemRecepcionCompraDTO = this.getItemsRecepcionesCompra().get(i).aItemRecepcionCompraDTO();
+			listaItemsRecepcionCompraDTO.add(itemRecepcionCompraDTO);
+		}
+		
+		recepcionCompraDTO.setRecepcionesCompra(listaItemsRecepcionCompraDTO);
+		recepcionCompraDTO.setSolicitudesCompra(listaSolicitudesCompraDTO);
+		return recepcionCompraDTO;
 		
 	}
 	
