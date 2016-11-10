@@ -69,10 +69,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	public void modificarStockDelArticulo(ArticuloDTO articulo){
 		
-		ArticuloBean newArticulo = new ArticuloBean();
-		newArticulo.setCodigo(buscarArticuloPorCodigo(articulo.getCodArticulo()));
+		ArticuloBean newArticulo = buscarArticuloPorCodigo(articulo.getCodArticulo());		
 		newArticulo.aArticuloBean(articulo);
-		em.merge(newArticulo);
+		em.merge(articulo);
 		
 	}
 
@@ -151,9 +150,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 	
-	public Integer buscarArticuloPorCodigo(Integer codArticulo) {
+	public ArticuloBean buscarArticuloPorCodigo(Integer codArticulo) {
 		
-		return (Integer) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
+		return (ArticuloBean) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
 	}
 
 	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
