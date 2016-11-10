@@ -74,9 +74,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	@Override
 	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
 		
-		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
-		newArticulo.aArticuloBean(articuloDTO);
-		em.merge(newArticulo);	
+//		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
+//		newArticulo.aArticuloBean(articuloDTO);
+//		em.merge(newArticulo);	
 	}
 
 
@@ -160,6 +160,13 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
 		return null;
 	}
+
+	@Override
+	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
