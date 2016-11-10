@@ -39,6 +39,19 @@ public class SolicitudArticuloBean {
 	}
 
 
+	public SolicitudArticuloBean(Integer codigo, String estado, Date fechaEntrega,
+			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+		super();
+		this.idSolicitudArticulo = idSolicitudArticulo;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.fechaEntrega = fechaEntrega;
+		this.idModulo = idModulo;
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+
+
+
 
 	public Integer getIdSolicitudArticulo() {
 		return idSolicitudArticulo;

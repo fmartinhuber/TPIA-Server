@@ -29,8 +29,6 @@ public class SolicitudCompraBean {
 	private String pendiente;
 	
 	private Date fechaCreacion;
-	
-	
 
 	public SolicitudCompraBean() {
 		
@@ -97,13 +95,6 @@ public class SolicitudCompraBean {
 		this.itemsSolicitudesCompra = solicitudesCompra;
 	}
 
-//	public RecepcionCompraBean getRecepcionCompra() {
-//		return recepcionCompra;
-//	}
-//
-//	public void setRecepcionCompra(RecepcionCompraBean recepcionCompra) {
-//		this.recepcionCompra = recepcionCompra;
-//	}
 	
 	// Métodos de transformaciones
 	
@@ -112,7 +103,7 @@ public class SolicitudCompraBean {
 		this.setCodigo(solicitudCompraDTO.getCodigo());
 		this.setFechaCreacion(solicitudCompraDTO.getFechaCreacion());
 		this.setPendiente(solicitudCompraDTO.getPendiente());
-
+		
 		List<ItemSolicitudCompraBean> listaItemsSolicitudesCompra = new ArrayList<ItemSolicitudCompraBean>();
 		for(int i=0; i<solicitudCompraDTO.getItemsSolicitudesCompra().size(); i++){
 			
