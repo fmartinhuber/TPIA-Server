@@ -1,6 +1,6 @@
 --INSERTS A LA BASE DE DATOS
 --Lo unico que se necesita en la base son:
---			Articulos. SolicitudArticulo. ItemSolicitudArticulo
+--		Articulos. SolicitudArticulo. ItemSolicitudArticulo
 -- Ya que esto es nuestra entrada al sistema (parte de Maxi). Lo demas lo generamos nosotros
 
 
