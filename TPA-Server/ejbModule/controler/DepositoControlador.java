@@ -110,11 +110,26 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 
-	@Override
+	//By Daro
+	@SuppressWarnings("unchecked")
 	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
-		//Aca hacer DTO->Bean
 		
-		return null;
+		//Obtenemos las Soliciudes de Articulo en estado Pendiente
+		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped");
+		q.setParameter("estped", "Pendiente");
+		List<SolicitudArticuloBean> salidaBean = new ArrayList<SolicitudArticuloBean>();
+		salidaBean = q.getResultList();
+		
+		//Pasamos las SolicitudesBean a SolicitudesDTO
+		List<SolicitudArticuloDTO> salidaDto = new ArrayList<SolicitudArticuloDTO>();
+		for (SolicitudArticuloBean s : salidaBean){
+			SolicitudArticuloDTO solArtDto = new SolicitudArticuloDTO();
+			solArtDto = s.aSolicitudArticuloDTO();
+			salidaDto.add(solArtDto);
+		}
+		
+		//Devolvemos las solicitudesDTO pendientes obtenidas
+		return salidaDto;
 	}
 
 	
