@@ -71,6 +71,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 		ArticuloBean newArticulo = new ArticuloBean();
 		newArticulo.setCodigo(buscarArticuloPorCodigo(articulo.getCodArticulo()));
+		newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
 		newArticulo.aArticuloBean(articulo);
 		em.merge(newArticulo);
 		
