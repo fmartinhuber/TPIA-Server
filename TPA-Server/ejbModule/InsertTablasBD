@@ -1,0 +1,31 @@
+--INSERTS A LA BASE DE DATOS
+--Lo unico que se necesita en la base son:
+--			Articulos. SolicitudArticulo. ItemSolicitudArticulo
+-- Ya que esto es nuestra entrada al sistema (parte de Maxi). Lo demas lo generamos nosotros
+
+
+--Articulo
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (1, N'G12', 101, N'Nombre 01', N'Descripcion 01', N'Marca 01', 1000, N'Foto 01', N'Origen 01', N'Electro', CAST(N'2016-11-07 12:18:08.343' AS DateTime), NULL, N'Ficha tecnica 01', NULL, NULL, NULL, 1000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (2, N'G12', 102, N'Nombre 02', N'Descripcion 02', N'Marca 02', 2000, N'Foto 02', N'Origen 02', N'Electro', CAST(N'2016-11-03 12:18:08.343' AS DateTime), NULL, N'Ficha tecnica 02', NULL, NULL, NULL, 2000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (3, N'G12', 103, N'Nombre 03', N'Descripcion 03', N'Marca 03', 3000, N'Foto 03', N'Origen 03', N'Mueble', CAST(N'2016-10-04 12:18:08.343' AS DateTime), NULL, NULL, NULL, NULL, N'Material 03', 3000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (4, N'G12', 104, N'Nombre 04', N'Descripcion 04', N'Marca 04', 4000, N'Foto 04', N'Origen 04', N'Mueble', CAST(N'2016-10-12 12:18:08.343' AS DateTime), NULL, NULL, NULL, NULL, N'Material 04', 4000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (5, N'G12', 105, N'Nombre 05', N'Descripcion 05', N'Marca 05', 5000, N'Foto 05', N'Origen 05', N'Infantil', CAST(N'2016-10-08 12:18:08.343' AS DateTime), N'De 1 año a 2 años', NULL, NULL, NULL, NULL, 5000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (6, N'G12', 106, N'Nombre 06', N'Descripcion 06', N'Marca 06', 6000, N'Foto 06', N'Origen 06', N'Infantil', CAST(N'2016-12-07 12:18:08.343' AS DateTime), N'De 6 meses a 18 meses', NULL, NULL, NULL, NULL, 6000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (7, N'G12', 107, N'Nombre 07', N'Descripcion 07', N'Marca 07', 7000, N'Foto 07', N'Origen 07', N'Moda', CAST(N'2016-12-03 12:18:08.343' AS DateTime), NULL, NULL, N'Color 07', N'Talle 07', NULL, 7000)
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (8, N'G12', 108, N'Nombre 08', N'Descripcion 08', N'Marca 08', 8000, N'Foto 08', N'Origen 08', N'Moda', CAST(N'2016-11-04 12:18:08.343' AS DateTime), NULL, NULL, N'Color 08', N'Talle 08', NULL, 8000)
+
+--SolicitudArticulo
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (1, 10, N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (2, 20, N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 2)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (3, 30, N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
+
+--ItemSolicitudArticulo
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (1, 10, 8, 1)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (2, 4, 1, 1)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (3, 7, 3, 1)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (4, 9, 1, 2)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (5, 21, 2, 1)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (6, 14, 8, 2)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (7, 3, 1, 3)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (8, 8, 4, 2)
+INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (9, 7, 8, 3)
