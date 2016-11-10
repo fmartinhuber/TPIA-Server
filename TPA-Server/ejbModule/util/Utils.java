@@ -3,6 +3,7 @@ package util;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import bean.ArticuloBean;
 import bean.ItemSolicitudArticuloBean;
 import bean.SolicitudArticuloBean;
 import dto.ItemSolicitudArticuloDTO;
@@ -32,4 +33,17 @@ public class Utils {
 				.map(a -> new ItemSolicitudArticuloDTO(a.getArticulo().aArticuloDTO(),a.getCantidad()))
 				.collect(Collectors.<ItemSolicitudArticuloDTO>toList());
 	}
+	
+	public static List <SolicitudArticuloBean> solicitudArticuloDTOToBean (List <SolicitudArticuloDTO> articuloDTOs){
+		return articuloDTOs.stream()
+				.map(a -> new SolicitudArticuloBean(a.getCodigo(),a.getEstado(),a.getFechaEntrega(),a.getIdModulo(),itemSolicitudArticuloDTOToBean(a.getItemsSolicitudArticulo())))
+				.collect(Collectors.<SolicitudArticuloBean>toList());
+	}
+	
+	public static List <ItemSolicitudArticuloBean> itemSolicitudArticuloDTOToBean (List <ItemSolicitudArticuloDTO> itemSolicitudArticuloBeans){
+		return itemSolicitudArticuloBeans.stream()
+				.map(a -> new ItemSolicitudArticuloBean(new ArticuloBean(),a.getCantidad()))
+				.collect(Collectors.<ItemSolicitudArticuloBean>toList());
+	}
+	
 }

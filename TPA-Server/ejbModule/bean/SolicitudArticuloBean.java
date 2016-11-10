@@ -4,7 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import dao.*;
+import dto.ItemSolicitudArticuloDTO;
+import dto.SolicitudArticuloDTO;
 
 @Entity
 @Table (name="SolicitudArticulo")
@@ -20,12 +21,35 @@ public class SolicitudArticuloBean {
 	private Integer idModulo;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idItemSolicitudArticulo")
+	@JoinColumn(name="idSolicitudArticulo")
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
-	
+	// Constructores
 
 	public SolicitudArticuloBean() {}
+	
+	public SolicitudArticuloBean(Integer idSolicitudArticulo, Integer codigo, String estado, Date fechaEntrega,
+			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+		this.idSolicitudArticulo = idSolicitudArticulo;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.fechaEntrega = fechaEntrega;
+		this.idModulo = idModulo;
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+
+
+	public SolicitudArticuloBean(Integer codigo, String estado, Date fechaEntrega,
+			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+		super();
+		this.idSolicitudArticulo = idSolicitudArticulo;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.fechaEntrega = fechaEntrega;
+		this.idModulo = idModulo;
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+
 
 	
 	
@@ -75,6 +99,48 @@ public class SolicitudArticuloBean {
 
 	public void setItemsSolicitudArticulo(List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
 		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+	
+	// Metodo de transformaciones
+
+	public void aSolicitudArticuloBean(SolicitudArticuloDTO solicitudArticuloDTO) {
+
+		this.setCodigo(solicitudArticuloDTO.getCodigo());
+		this.setEstado(solicitudArticuloDTO.getEstado());
+		this.setFechaEntrega(solicitudArticuloDTO.getFechaEntrega());
+		this.setIdModulo(solicitudArticuloDTO.getIdModulo());
+
+		List<ItemSolicitudArticuloBean> listaSolicitudesArticulo = new ArrayList<ItemSolicitudArticuloBean>();
+		for(int i=0; i<solicitudArticuloDTO.getItemsSolicitudArticulo().size(); i++){
+			
+			ItemSolicitudArticuloBean itemSolicitudArticuloBean = new ItemSolicitudArticuloBean();
+			ItemSolicitudArticuloDTO itemSolicitudArticuloDTO = solicitudArticuloDTO.getItemsSolicitudArticulo().get(i);
+			itemSolicitudArticuloBean.aItemSolicitudArticuloBean(itemSolicitudArticuloDTO);
+			listaSolicitudesArticulo.add(itemSolicitudArticuloBean);
+		}
+		this.setItemsSolicitudArticulo(listaSolicitudesArticulo);
+	}
+	
+	public SolicitudArticuloDTO aSolicitudArticuloDTO(){
+		
+		SolicitudArticuloDTO solicitudArticuloDTO = new SolicitudArticuloDTO();
+		
+		solicitudArticuloDTO.setCodigo(this.getCodigo());
+		solicitudArticuloDTO.setEstado(this.getEstado());
+		solicitudArticuloDTO.setFechaEntrega(this.getFechaEntrega());
+		solicitudArticuloDTO.setIdModulo(this.getIdModulo());
+		
+		List<ItemSolicitudArticuloDTO> listaItemsSolicitudArticulo = new ArrayList<ItemSolicitudArticuloDTO>();
+		for(int i=0; i<this.getItemsSolicitudArticulo().size(); i++){
+			
+			ItemSolicitudArticuloDTO itemSolicitudArticuloDTO = new ItemSolicitudArticuloDTO();
+			itemSolicitudArticuloDTO = this.getItemsSolicitudArticulo().get(i).aItemSolicitudArticuloDTO();
+			listaItemsSolicitudArticulo.add(itemSolicitudArticuloDTO);
+		}
+		solicitudArticuloDTO.setItemsSolicitudArticulo(listaItemsSolicitudArticulo);
+		
+		return solicitudArticuloDTO;
+		
 	}
 	
 }
