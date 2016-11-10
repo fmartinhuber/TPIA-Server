@@ -20,6 +20,7 @@ public class SolicitudArticuloBean {
 	private Integer idModulo;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="idItemSolicitudArticulo")
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
 	

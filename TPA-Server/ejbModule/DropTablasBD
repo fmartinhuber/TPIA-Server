@@ -1,27 +1,10 @@
-	--Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente
+--Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente - By Daro actualizado
 
-drop table DetalleMovimientoStock
-go
-drop table DetalleSolicitado
-go
+drop table hibernate_sequence
 drop table ItemRecepcionCompra
-go
-drop table ItemSolicitadoArticulo
-go
-drop table RecepcionCompra
-go
-drop table SolicitudArticulo
-go
-drop table SolicitudCompra
-go
 drop table ItemSolicitudCompra
-go
+drop table ItemSolicitudArticulo
+drop table SolicitudArticulo
+drop table SolicitudCompra
+drop table RecepcionCompra
 drop table Articulo
-go
-drop table SolicitudArticulo_ItemSolicitadoArticulo
-go
-
-
-
-
-
