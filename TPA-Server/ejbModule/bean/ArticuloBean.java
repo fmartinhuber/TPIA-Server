@@ -49,7 +49,7 @@ public class ArticuloBean implements Serializable {
 	@Column(nullable = true)
 	private Integer cantidadDisponible;	
 	
-	
+	// Constructores
 	
 	public ArticuloBean(){}
 
@@ -222,6 +222,7 @@ public class ArticuloBean implements Serializable {
 	// Métodos de transformaciones
 	
 	public void aArticuloBean(ArticuloDTO articuloDTO){
+		
 		this.setCantidadDisponible(articuloDTO.getCantidadDisponible());
 		this.setCodigo(articuloDTO.getCodArticulo());
 		this.setColor(articuloDTO.getColor());
@@ -238,11 +239,12 @@ public class ArticuloBean implements Serializable {
 		this.setPrecio(articuloDTO.getPrecio());
 		this.setTalle(articuloDTO.getTalle());
 		this.setTipo(articuloDTO.getTipo());
-		
 	}
 	
 	public ArticuloDTO aArticuloDTO(){
+		
 		ArticuloDTO articuloDTO = new ArticuloDTO();
+		
 		articuloDTO.setCantidadDisponible(this.getCantidadDisponible());
 		articuloDTO.setCodArticulo(this.getCodigo());
 		articuloDTO.setColor(this.getColor());

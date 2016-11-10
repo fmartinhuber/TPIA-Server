@@ -56,6 +56,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public List <SolicitudArticuloDTO> listarSolicitudArticuloPendiente() {
 		
 		Query q = em.createQuery("Select s from SolicitudArticuloBean S where s.estado =:estado").setParameter("estado", "pendiente");
+		@SuppressWarnings("unchecked")
 		List<SolicitudArticuloBean> salida = q.getResultList();
 		return Utils.solicitudArticuloBeanToDTO(salida);
 		
@@ -149,31 +150,11 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	
-	@Override
-	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
-			
-		SolicitudArticuloBean newSolicitudArticuloBean = new SolicitudArticuloBean();
-		newSolicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
-		em.persist(newSolicitudArticuloBean);		
-	}
-	
-	@Override
-	public ArticuloBean buscarArticuloPorCodigo(Integer codArticulo) {
-		
-		return (ArticuloBean) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
-	}
-
-	@Override
-	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
-		
-		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();			
-	}	
-	
-	@Override
 	@SuppressWarnings("unchecked")
 	public List<ArticuloDTO> listarArticulos() {
 		
 		Query q = em.createQuery("from ArticuloBean");
+		@SuppressWarnings("unused")
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
 		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));

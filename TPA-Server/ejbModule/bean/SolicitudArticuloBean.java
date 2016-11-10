@@ -51,8 +51,8 @@ public class SolicitudArticuloBean {
 	}
 
 
-	
-	
+
+
 	public Integer getIdSolicitudArticulo() {
 		return idSolicitudArticulo;
 	}

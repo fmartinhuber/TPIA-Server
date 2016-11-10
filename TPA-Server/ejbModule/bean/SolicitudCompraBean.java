@@ -7,7 +7,6 @@ import javax.persistence.*;
 import dto.ItemSolicitudCompraDTO;
 import dto.SolicitudArticuloDTO;
 import dto.SolicitudCompraDTO;
-import dto.SolicitudCompraDTO;
 
 @Entity
 @Table (name="SolicitudCompra")
@@ -20,12 +19,12 @@ public class SolicitudCompraBean {
 	private Integer codigo; 
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idSolicitudesArticulo")
-	private List<SolicitudArticuloBean> solicitudesArticulos;
-	
-	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idSolicitudesCompra")
 	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="idSolicitudesCompra")
+	private List<SolicitudArticuloBean> solicitudesArticulos;
 	
 	private String pendiente;
 	
@@ -96,12 +95,15 @@ public class SolicitudCompraBean {
 		this.itemsSolicitudesCompra = solicitudesCompra;
 	}
 
-
-	public void aSolicitudCompraBean(SolicitudCompraDTO compraDTO) {
-		this.codigo = compraDTO.getCodigo();
-		this.fechaCreacion = compraDTO.getFechaCreacion();
-		this.pendiente = compraDTO.getPendiente();
-//		this.solicitudesArticulos = compraDTO.getSolicitudesArticulos();
+	
+	// Métodos de transformaciones
+	
+	public void aSolicitudCompraBean(SolicitudCompraDTO solicitudCompraDTO){
+		
+		this.setCodigo(solicitudCompraDTO.getCodigo());
+		this.setFechaCreacion(solicitudCompraDTO.getFechaCreacion());
+		this.setPendiente(solicitudCompraDTO.getPendiente());
+		
 		List<ItemSolicitudCompraBean> listaItemsSolicitudesCompra = new ArrayList<ItemSolicitudCompraBean>();
 		for(int i=0; i<solicitudCompraDTO.getItemsSolicitudesCompra().size(); i++){
 			
