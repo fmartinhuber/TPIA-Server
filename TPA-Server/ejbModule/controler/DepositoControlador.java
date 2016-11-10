@@ -14,8 +14,6 @@ import bean.ItemRecepcionCompraBean;
 import bean.RecepcionCompraBean;
 import bean.SolicitudArticuloBean;
 import bean.SolicitudCompraBean;
-import dao.ArticuloDao;
-import dao.SolicitudArticuloDao;
 import dto.ArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
@@ -53,6 +51,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public List <SolicitudArticuloDTO> obtenerSolicitudArticuloPendiente() {
 		
 		Query q = em.createQuery("Select s from SolicitudArticuloBean S where s.estado =:estado").setParameter("estado", "pendiente");
+		@SuppressWarnings("unchecked")
 		List<SolicitudArticuloBean> salida = q.getResultList();
 		return Utils.solicitudArticuloBeanToDTO(salida);
 		
@@ -68,22 +67,22 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 		
 	
-	public void modificarStockDelArticulo(ArticuloBean articulo){
+	public void modificarStockDelArticulo(ArticuloDTO articulo){
 		
-//		ArticuloBean newArticulo = ArticuloDao.buscarArticuloPorCodigo(articulo.getCodigo());
-//		newArticulo.aArticuloBean(articulo);
-//		em.merge(newArticulo);
+		ArticuloBean newArticulo = new ArticuloBean();
+		newArticulo.setCodigo(buscarArticuloPorCodigo(articulo.getCodArticulo()));
+		newArticulo.aArticuloBean(articulo);
+		em.merge(newArticulo);
 		
-//		if(newArticulo != null){
-//			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());
-//			newArticulo.updateArticulo();
-//		}			
 	}
 
 
 	@Override
 	public void modificarArticulo(ArticuloDTO articulo) {
-		// TODO Auto-generated method stub
+		
+		ArticuloBean newArticulo = new ArticuloBean();
+		newArticulo.aArticuloBean(articulo);
+		em.merge(newArticulo);
 		
 	}
 
@@ -152,23 +151,22 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 	
-	@Override
-	public ArticuloDTO buscarArticuloPorCodigo(Integer codArticulo) {
+	public Integer buscarArticuloPorCodigo(Integer codArticulo) {
 		
-		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
+		return (Integer) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
 	}
 
-	@Override
 	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
 		
 		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();			
 	}	
 	
-	@Override
+	@SuppressWarnings("unchecked")
 	public List<ArticuloDTO> listarArticulos() {
 		// TODO Auto-generated method stub
 		
 		Query q = em.createQuery("from ArticuloBean");
+		@SuppressWarnings("unused")
 		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
 		salida = q.getResultList();
 		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
