@@ -21,7 +21,7 @@ public class SolicitudCompraBean {
 	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idSolicitudesArticulo")
+	@JoinColumn(name="idSolicitudesCompra")
 	private List<SolicitudArticuloBean> solicitudesArticulos;
 	
 	

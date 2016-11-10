@@ -19,7 +19,7 @@ public class RecepcionCompraBean {
 	private List<ItemRecepcionCompraBean> itemsRecepcionesCompra;
 	
 	@OneToMany (cascade=CascadeType.ALL)
-	@JoinColumn(name="idSolicitudCompra")
+	@JoinColumn(name="idRecepcionCompra")
 	private List<SolicitudCompraBean> solicitudesCompra;
 
 	
