@@ -70,7 +70,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	public void modificarStockDelArticulo(ArticuloBean articulo){
 		
-		ArticuloBean newArticulo = ArticuloDao.buscarArticuloPorCodigo(articulo.getCodigo());
+//		ArticuloBean newArticulo = ArticuloDao.buscarArticuloPorCodigo(articulo.getCodigo());
+//		newArticulo.aArticuloBean(articulo);
+//		em.merge(newArticulo);
 		
 //		if(newArticulo != null){
 //			newArticulo.setCantidadDisponible(articulo.getCantidadDisponible());

@@ -24,8 +24,6 @@ public class ItemSolicitudArticuloBean {
 	
 	private Integer cantidad;
 	
-	
-
 		
 	public ItemSolicitudArticuloBean(ArticuloBean articulo, Integer cantidad) {
 		super();
