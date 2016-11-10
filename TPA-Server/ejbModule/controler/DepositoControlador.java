@@ -38,17 +38,22 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	public static DepositoControlador instancia;
 
+	// Singleton
+	
 	public static DepositoControlador getInstancia() {
 		if (instancia == null)
 			return new DepositoControlador();
 		return instancia;
 	}
 
-	public DepositoControlador() {
+	// Constructor
+	
+	public DepositoControlador() {}
 
-	}
-
-	public List <SolicitudArticuloDTO> obtenerSolicitudArticuloPendiente() {
+	// Métodos a implementar
+	
+	@Override
+	public List <SolicitudArticuloDTO> listarSolicitudArticuloPendiente() {
 		
 		Query q = em.createQuery("Select s from SolicitudArticuloBean S where s.estado =:estado").setParameter("estado", "pendiente");
 		@SuppressWarnings("unchecked")
@@ -57,58 +62,57 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 	
-	public void crearArticulo(ArticuloDTO articulo){
+	@Override
+	public void crearArticulo(ArticuloDTO articuloDTO){
 		
 		ArticuloBean newArticulo = new ArticuloBean();
-		newArticulo.aArticuloBean(articulo);
+		newArticulo.aArticuloBean(articuloDTO);
 		em.persist(newArticulo);
-		
 	}
 	
 		
-	
-	public void modificarStockDelArticulo(ArticuloDTO articulo){
+	@Override
+	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
 		
-		ArticuloBean newArticulo = buscarArticuloPorCodigo(articulo.getCodArticulo());		
-		newArticulo.aArticuloBean(articulo);
-		em.merge(articulo);
-		
+		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
+		newArticulo.aArticuloBean(articuloDTO);
+		em.merge(newArticulo);	
 	}
 
 
 	@Override
-	public void modificarArticulo(ArticuloDTO articulo) {
+	public void modificarArticulo(ArticuloDTO articuloDTO) {
 		
 		ArticuloBean newArticulo = new ArticuloBean();
-		newArticulo.aArticuloBean(articulo);
+		newArticulo.aArticuloBean(articuloDTO);
 		em.merge(newArticulo);
-		
 	}
 
 
 	@Override
 	public void crearSolicitudCompra(SolicitudCompraDTO compraDTO){
-		//Aca pasar DTO->Bean
-		SolicitudCompraBean solicitudCompraBean = new SolicitudCompraBean();
-		em.persist(solicitudCompraBean);
+
+		SolicitudCompraBean newSolicitudCompraBean = new SolicitudCompraBean();
+		newSolicitudCompraBean.aSolicitudCompraBean(compraDTO);
+		em.persist(newSolicitudCompraBean);
 	}
 
 
 	@Override
-	public void recepcionCompra(RecepcionCompraDTO compraDTO) {
+	public void registrarRecepcionCompra(RecepcionCompraDTO compraDTO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<SolicitudArticuloDTO> solicitudesPendientes() {
+	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
 		//Aca hacer DTO->Bean
 		
 		return null;
 	}
 
+	
 	@Override
-
 	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
 		
 		//Convertimos la solicitud de compra DTO a Recepción de compra BEAN
@@ -144,11 +148,18 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 
+	
 	@Override
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
-		// TODO Auto-generated method stub
-		
+			
+		SolicitudArticuloBean newSolicitudArticuloBean = new SolicitudArticuloBean();
+		newSolicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
+		em.persist(newSolicitudArticuloBean);		
 	}
+
+	
+	
+	// Estos métodos de abajo deberían ser privados y no tienen que estar en la interface
 	
 	public ArticuloBean buscarArticuloPorCodigo(Integer codArticulo) {
 		
@@ -162,7 +173,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	@SuppressWarnings("unchecked")
 	public List<ArticuloDTO> listarArticulos() {
-		// TODO Auto-generated method stub
 		
 		Query q = em.createQuery("from ArticuloBean");
 		@SuppressWarnings("unused")
