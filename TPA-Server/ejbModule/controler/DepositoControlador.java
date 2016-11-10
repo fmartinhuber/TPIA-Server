@@ -14,6 +14,7 @@ import bean.ItemRecepcionCompraBean;
 import bean.RecepcionCompraBean;
 import bean.SolicitudArticuloBean;
 import bean.SolicitudCompraBean;
+import dao.ArticuloDao;
 import dto.ArticuloDTO;
 import dto.ItemSolicitudCompraDTO;
 import dto.RecepcionCompraDTO;
@@ -74,9 +75,14 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	@Override
 	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
 		
-		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
+//		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
+//		newArticulo.aArticuloBean(articuloDTO);
+//		em.merge(newArticulo);	
+		
+		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(108);
 		newArticulo.aArticuloBean(articuloDTO);
-		em.merge(newArticulo);	
+		em.merge(newArticulo);
+		
 	}
 
 
