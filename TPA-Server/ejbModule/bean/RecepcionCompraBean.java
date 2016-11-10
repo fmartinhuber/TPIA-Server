@@ -19,15 +19,25 @@ public class RecepcionCompraBean {
 	private List<ItemRecepcionCompraBean> itemsRecepcionesCompra;
 	
 	@OneToMany (cascade=CascadeType.ALL)
-	@JoinColumn(name="idSolicitudCompra")
+	@JoinColumn(name="idRecepcionCompra")
 	private List<SolicitudCompraBean> solicitudesCompra;
 
 	
 
-	public RecepcionCompraBean() {}
+	public RecepcionCompraBean() {
+		
+	}
 	
-	
-	
+	public RecepcionCompraBean(Integer idRecepcionCompra, Integer codigo,
+			List<ItemRecepcionCompraBean> itemsRecepcionesCompra, List<SolicitudCompraBean> solicitudesCompra) {
+		this.idRecepcionCompra = idRecepcionCompra;
+		this.codigo = codigo;
+		this.itemsRecepcionesCompra = itemsRecepcionesCompra;
+		this.solicitudesCompra = solicitudesCompra;
+	}
+
+
+
 	public Integer getIdRecepcionCompra() {
 		return idRecepcionCompra;
 	}

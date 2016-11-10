@@ -12,22 +12,26 @@ public class ItemSolicitudCompraBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idItemSolicitudCompra;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idArticulo")
 	private ArticuloBean articulo;
-
-//	@ManyToOne (cascade=CascadeType.ALL)
-//	@JoinColumn(name="idSolicitudCompra")
-//	private SolicitudCompraBean solicitudCompra;
 	
 	private Integer cantidad;
 
 	
 	
-	public ItemSolicitudCompraBean() {}
+	public ItemSolicitudCompraBean() {
+		
+	}
+		
+	public ItemSolicitudCompraBean(Integer idItemSolicitudCompra, ArticuloBean articulo, Integer cantidad) {
+		this.idItemSolicitudCompra = idItemSolicitudCompra;
+		this.articulo = articulo;
+		this.cantidad = cantidad;
+	}
 
-	
-	
+
+
 	public ArticuloBean getArticulo() {
 		return articulo;
 	}

@@ -21,13 +21,8 @@ public class SolicitudCompraBean {
 	private List<ItemSolicitudCompraBean> itemsSolicitudesCompra;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idSolicitudesArticulo")
+	@JoinColumn(name="idSolicitudesCompra")
 	private List<SolicitudArticuloBean> solicitudesArticulos;
-	
-	
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name="idRecepcionesCompra")
-	//private RecepcionCompraBean recepcionCompra;
 	
 	private String pendiente;
 	
@@ -35,10 +30,23 @@ public class SolicitudCompraBean {
 	
 	
 
-	public SolicitudCompraBean() {}
+	public SolicitudCompraBean() {
+		
+	}	
+	
+	public SolicitudCompraBean(Integer idSolicitudCompra, Integer codigo,
+			List<ItemSolicitudCompraBean> itemsSolicitudesCompra, List<SolicitudArticuloBean> solicitudesArticulos,
+			String pendiente, Date fechaCreacion) {
+		this.idSolicitudCompra = idSolicitudCompra;
+		this.codigo = codigo;
+		this.itemsSolicitudesCompra = itemsSolicitudesCompra;
+		this.solicitudesArticulos = solicitudesArticulos;
+		this.pendiente = pendiente;
+		this.fechaCreacion = fechaCreacion;
+	}
 
-	
-	
+
+
 	public Integer getIdSolicitudCompra() {
 		return idSolicitudCompra;
 	}
