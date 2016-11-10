@@ -2,6 +2,8 @@ package bean;
 
 import javax.persistence.*;
 
+import dto.ItemRecepcionCompraDTO;
+
 @Entity
 @Table(name = "ItemRecepcionCompra")
 public class ItemRecepcionCompraBean {
@@ -17,11 +19,9 @@ public class ItemRecepcionCompraBean {
 	private Integer cantidad;
 	
 	
-	
+	// Constructores
 
-	public ItemRecepcionCompraBean() {
-		
-	}
+	public ItemRecepcionCompraBean() {}
 
 	public ItemRecepcionCompraBean(Integer idItemRecepcionCompra, ArticuloBean articulo, Integer cantidad) {
 		this.idItemRecepcionCompra = idItemRecepcionCompra;
@@ -53,6 +53,17 @@ public class ItemRecepcionCompraBean {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	// Metodo de transformaciones
+
+	public void aItemRecepcionCompraBean(ItemRecepcionCompraDTO itemRecepcionCompraDTO) {
+
+		this.setCantidad(itemRecepcionCompraDTO.getCantidad());
+		
+		ArticuloBean articuloBean = new ArticuloBean();
+		articuloBean.aArticuloBean(itemRecepcionCompraDTO.getArticulo());
+		
 	}
 	
 }

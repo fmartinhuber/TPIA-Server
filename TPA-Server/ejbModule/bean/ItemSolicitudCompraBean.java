@@ -2,7 +2,7 @@ package bean;
 
 import javax.persistence.*;
 
-import dao.*;
+import dto.ItemSolicitudCompraDTO;
 
 @Entity
 @Table(name = "ItemSolicitudCompra")
@@ -46,6 +46,18 @@ public class ItemSolicitudCompraBean {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	// Metodo de transformaciones
+
+	public void aItemSolicitudCompraBean(ItemSolicitudCompraDTO itemSolicitudCompraDTO) {
+
+		this.setCantidad(itemSolicitudCompraDTO.getCantidad());
+		
+		ArticuloBean articulo = new ArticuloBean();
+		articulo.aArticuloBean(itemSolicitudCompraDTO.getArticulo());
+		
+		
 	}	
 	
 }

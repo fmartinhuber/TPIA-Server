@@ -2,7 +2,7 @@ package bean;
 
 import javax.persistence.*;
 
-import dao.*;
+import dto.ItemSolicitudArticuloDTO;
 
 //Daro: Este Bean relaciona el articulo con la cantidad solicitada
 
@@ -59,12 +59,16 @@ public class ItemSolicitudArticuloBean {
 		this.cantidad = cantidad;
 	}
 
-//	public SolicitudArticuloBean getSolicitud() {
-//		return solicitud;
-//	}
-//
-//	public void setSolicitud(SolicitudArticuloBean solicitud) {
-//		this.solicitud = solicitud;
-//	}
+	// Metodo de transformaciones
+	
+	public void aItemSolicitudArticuloBean(ItemSolicitudArticuloDTO itemSolicitudArticuloDTO) {
+
+		this.setCantidad(itemSolicitudArticuloDTO.getCantidad());
+		
+		ArticuloBean articuloBean = new ArticuloBean();
+		articuloBean.aArticuloBean(itemSolicitudArticuloDTO.getArticulo());
+		
+	}
+
 
 }

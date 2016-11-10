@@ -4,7 +4,9 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import dao.*;
+import dto.ItemSolicitudCompraDTO;
+import dto.SolicitudArticuloDTO;
+import dto.SolicitudCompraDTO;
 
 @Entity
 @Table (name="SolicitudCompra")
@@ -103,5 +105,34 @@ public class SolicitudCompraBean {
 //		this.recepcionCompra = recepcionCompra;
 //	}
 	
+	// Métodos de transformaciones
+	
+	public void aSolicitudCompraBean(SolicitudCompraDTO solicitudCompraDTO){
 		
+		this.setCodigo(solicitudCompraDTO.getCodigo());
+		this.setFechaCreacion(solicitudCompraDTO.getFechaCreacion());
+		this.setPendiente(solicitudCompraDTO.getPendiente());
+
+		List<ItemSolicitudCompraBean> listaItemsSolicitudesCompra = new ArrayList<ItemSolicitudCompraBean>();
+		for(int i=0; i<solicitudCompraDTO.getItemsSolicitudesCompra().size(); i++){
+			
+			ItemSolicitudCompraBean itemSolicitudCompraBean = new ItemSolicitudCompraBean();
+			ItemSolicitudCompraDTO itemSolicitudCompraDTO = solicitudCompraDTO.getItemsSolicitudesCompra().get(i);
+			itemSolicitudCompraBean.aItemSolicitudCompraBean(itemSolicitudCompraDTO);
+			listaItemsSolicitudesCompra.add(itemSolicitudCompraBean);
+		}
+		this.setItemsSolicitudesCompra(listaItemsSolicitudesCompra);
+		
+		List<SolicitudArticuloBean> listaSolicitudesArticulo = new ArrayList<SolicitudArticuloBean>();
+		for(int i=0; i<solicitudCompraDTO.getSolicitudesArticulos().size(); i++){
+			
+			SolicitudArticuloBean solicitudArticuloBean = new SolicitudArticuloBean();
+			SolicitudArticuloDTO solicitudArticuloDTO = solicitudCompraDTO.getSolicitudesArticulos().get(i);
+			solicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
+			listaSolicitudesArticulo.add(solicitudArticuloBean);
+		}
+		this.setSolicitudesArticulos(listaSolicitudesArticulo);
+		
+	}
+	
 }

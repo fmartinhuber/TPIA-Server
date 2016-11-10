@@ -4,7 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import dao.*;
+import dto.ItemSolicitudArticuloDTO;
+import dto.SolicitudArticuloDTO;
 
 @Entity
 @Table (name="SolicitudArticulo")
@@ -87,6 +88,27 @@ public class SolicitudArticuloBean {
 
 	public void setItemsSolicitudArticulo(List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
 		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+	
+	// Metodo de transformaciones
+
+	public void aSolicitudArticuloBean(SolicitudArticuloDTO solicitudArticuloDTO) {
+
+		this.setCodigo(solicitudArticuloDTO.getCodigo());
+		this.setEstado(solicitudArticuloDTO.getEstado());
+		this.setFechaEntrega(solicitudArticuloDTO.getFechaEntrega());
+		this.setIdModulo(solicitudArticuloDTO.getIdModulo());
+
+		List<ItemSolicitudArticuloBean> listaSolicitudesArticulo = new ArrayList<ItemSolicitudArticuloBean>();
+		for(int i=0; i<solicitudArticuloDTO.getItemsSolicitudArticulo().size(); i++){
+			
+			ItemSolicitudArticuloBean itemSolicitudArticuloBean = new ItemSolicitudArticuloBean();
+			ItemSolicitudArticuloDTO itemSolicitudArticuloDTO = solicitudArticuloDTO.getItemsSolicitudArticulo().get(i);
+			itemSolicitudArticuloBean.aItemSolicitudArticuloBean(itemSolicitudArticuloDTO);
+			listaSolicitudesArticulo.add(itemSolicitudArticuloBean);
+		}
+		this.setItemsSolicitudArticulo(listaSolicitudesArticulo);
+		
 	}
 	
 }
