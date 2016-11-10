@@ -136,11 +136,11 @@ public class ArticuloBean implements Serializable {
 		this.origen = origen;
 	}
 
-	public float getPrecio() {
+	public Float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
 
