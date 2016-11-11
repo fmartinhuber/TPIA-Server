@@ -19,7 +19,7 @@ public class ArticuloBean implements Serializable {
 	@Column(nullable = true)
 	private String idDeposito; 	
 	@Column(nullable = true)
-	private Integer codArticulo;
+	private String codArticulo;
 	@Column(nullable = true)
 	private String nombre;
 	@Column(nullable = true)
@@ -53,7 +53,7 @@ public class ArticuloBean implements Serializable {
 	
 	public ArticuloBean(){}
 
-	public ArticuloBean(Integer id, String idDeposito, Integer codArticulo, String nombre, String descripcion, String marca, String origen,
+	public ArticuloBean(Integer id, String idDeposito, String codArticulo, String nombre, String descripcion, String marca, String origen,
 			Float precio, String tipo, Date fecha, String foto, String edadRecomendada, String fichaTecnica,
 			String talle, String material, Integer cantidadDisponible, String color) {
 		super();
@@ -95,11 +95,11 @@ public class ArticuloBean implements Serializable {
 		this.idDeposito = idDeposito;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codArticulo;
 	}
 
-	public void setCodigo(Integer codArticulo) {
+	public void setCodigo(String codArticulo) {
 		this.codArticulo = codArticulo;
 	}
 

@@ -94,8 +94,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		//Aca pasar DTO->Bean
 		SolicitudCompraBean solicitudCompraBean = new SolicitudCompraBean();
 		solicitudCompraBean.aSolicitudCompraBean(compraDTO);
-		
-		em.persist(solicitudCompraBean);
+//		em.persist(solicitudCompraBean);
 	}
 
 
@@ -103,13 +102,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public void registrarRecepcionCompra(RecepcionCompraDTO compraDTO) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
-		//Aca hacer DTO->Bean
-		
-		return null;
 	}
 
 	
@@ -163,8 +155,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	@Override
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
-		// TODO Auto-generated method stub
-		
+		SolicitudArticuloBean solicitudArticuloBean = new SolicitudArticuloBean();
+		solicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
+		em.persist(solicitudArticuloBean);
 	}
 
 

@@ -16,7 +16,7 @@ public class SolicitudCompraBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idSolicitudCompra;
 	
-	private Integer codigo; 
+	private String codigo; 
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idSolicitudesCompra")
@@ -34,7 +34,7 @@ public class SolicitudCompraBean {
 		
 	}	
 	
-	public SolicitudCompraBean(Integer idSolicitudCompra, Integer codigo,
+	public SolicitudCompraBean(Integer idSolicitudCompra, String codigo,
 			List<ItemSolicitudCompraBean> itemsSolicitudesCompra, List<SolicitudArticuloBean> solicitudesArticulos,
 			String pendiente, Date fechaCreacion) {
 		this.idSolicitudCompra = idSolicitudCompra;
@@ -55,11 +55,11 @@ public class SolicitudCompraBean {
 		this.idSolicitudCompra = idSolicitudCompra;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

@@ -15,7 +15,7 @@ public class SolicitudArticuloBean {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idSolicitudArticulo;
 	
-	private Integer codigo; 
+	private String codigo; 
 	private String estado; 
 	private Date fechaEntrega;
 	private Integer idModulo;
@@ -28,7 +28,7 @@ public class SolicitudArticuloBean {
 
 	public SolicitudArticuloBean() {}
 	
-	public SolicitudArticuloBean(Integer idSolicitudArticulo, Integer codigo, String estado, Date fechaEntrega,
+	public SolicitudArticuloBean(String codigo, String estado, Date fechaEntrega,
 			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
 		this.idSolicitudArticulo = idSolicitudArticulo;
 		this.codigo = codigo;
@@ -37,19 +37,6 @@ public class SolicitudArticuloBean {
 		this.idModulo = idModulo;
 		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
 	}
-
-
-	public SolicitudArticuloBean(Integer codigo, String estado, Date fechaEntrega,
-			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
-		super();
-		this.idSolicitudArticulo = idSolicitudArticulo;
-		this.codigo = codigo;
-		this.estado = estado;
-		this.fechaEntrega = fechaEntrega;
-		this.idModulo = idModulo;
-		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
-	}
-
 
 
 
@@ -61,11 +48,11 @@ public class SolicitudArticuloBean {
 		this.idSolicitudArticulo = idSolicitudArticulo;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	
