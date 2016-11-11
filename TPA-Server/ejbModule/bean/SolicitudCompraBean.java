@@ -30,6 +30,8 @@ public class SolicitudCompraBean {
 	
 	private Date fechaCreacion;
 
+	
+	
 	public SolicitudCompraBean() {
 		
 	}	

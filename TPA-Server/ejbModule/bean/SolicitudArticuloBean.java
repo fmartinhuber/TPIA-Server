@@ -30,6 +30,7 @@ public class SolicitudArticuloBean {
 	
 	public SolicitudArticuloBean(String codigo, String estado, Date fechaEntrega,
 			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
+<<<<<<< HEAD
 		this.idSolicitudArticulo = idSolicitudArticulo;
 		this.codigo = codigo;
 		this.estado = estado;
@@ -37,6 +38,17 @@ public class SolicitudArticuloBean {
 		this.idModulo = idModulo;
 		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
 	}
+=======
+		super();
+		this.idSolicitudArticulo = idSolicitudArticulo;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.fechaEntrega = fechaEntrega;
+		this.idModulo = idModulo;
+		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
+	}
+
+>>>>>>> refs/remotes/origin/master
 
 
 

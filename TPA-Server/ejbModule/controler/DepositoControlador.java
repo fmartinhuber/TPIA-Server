@@ -159,7 +159,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		solicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
 		em.persist(solicitudArticuloBean);
 	}
-
+	
 
 
 

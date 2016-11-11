@@ -2,12 +2,24 @@ package dao;
 
 import java.util.*;
 
-import org.hibernate.Session;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import bean.*;
 
 public class ArticuloDao extends HibernateDao{
 
+	@PersistenceContext(unitName="MyPU")
+	private static EntityManager em;
+	
+	private static ArticuloDao instancia = null;
+	
+	public static ArticuloDao getInstancia(){
+		if(instancia == null){
+			instancia = new ArticuloDao();
+		} 
+		return instancia;
+	}
 	
 	
 	public List<ArticuloBean> listarArticulos(){
@@ -31,69 +43,11 @@ public class ArticuloDao extends HibernateDao{
 		return 1;
 	}	
 	
-	public static ArticuloBean buscarArticuloPorCodigo(int codigo){
+	public ArticuloBean buscarArticuloPorCodigo(Integer codigo){
 		
-//		Session s = HibernateUtil.getSessionFactory().openSession();
-//		org.hibernate.Query query = s.createQuery("select a from ArticuloBean a where a.codArticulo = :codigoArticulo");
-//		query.setParameter("codigoArticulo", codigo);
-//		ArticuloBean articulo = (ArticuloBean) query.uniqueResult();
-//		s.close();
-//		return articulo;	
-		
-		return null;
+		//return (ArticuloBean)em.createQuery("select a from ArticuloBean a where a.codArticulo = :codigo").setParameter(codigo, codigo).getSingleResult();
+		return (ArticuloBean)em.createQuery("select a from ArticuloBean a where a.codArticulo = 108").getSingleResult();
 	}
-	
-	public ArticuloBean buscarArticuloPorCodigo2(ArticuloBean articulo){
-		
-//		Session s = HibernateUtil.getSessionFactory().openSession();
-//		
-//		ArticuloBean salida = (ArticuloBean) s.createQuery("from ArticuloBean a where a.codigo = " +articulo.getCodigo()).uniqueResult();
-//		
-//		return salida;
-		
-		return null;
-	}
-
-	
-//	public ArticuloBean2 obtenerArticuloPorID(long id){
-//		
-//		return (ArticuloBean2)em.createQuery("SELECT a FROM ArticuloBean2 a " + "WHERE a.codigo = :id").setParameter("id", id).getSingleResult();
-//	}
-//	
-//	@SuppressWarnings("unchecked")
-//	public List<ArticuloBean2> listarArticulosPorFechas(Date start, Date end) {
-//		return em.createQuery(
-//			     "SELECT a FROM ArticuloBean2 a "
-//			      + "WHERE a.fecha between :start and :end"
-//			      + " =:start").setParameter("start", start).setParameter("end", end).getResultList();
-//	}
-//	
-//	public ArticuloBean2 obtenerArticuloPorNombre(String nombre) {
-//		return (ArticuloBean2) em.createQuery(
-//			      "SELECT a FROM ArticuloBean2 a WHERE a.nombre =:nombre").setParameter("nombre", nombre).setMaxResults(1).getSingleResult();
-//	}
-//
-//		
-//	@SuppressWarnings("unchecked")
-//	public List<ArticuloBean2> listarArticulos() {
-//		return em.createQuery("SELECT a FROM ArticuloBean2 a").getResultList();
-//	}
-//
-//	@Override
-//	public void persist(ArticuloBean2 articulo) {
-//		em.persist(articulo);
-//	}
-//
-//	@Override
-//	public void remove(ArticuloBean2 articulo) {
-//		em.remove(articulo);
-//	}
-//
-//	@Override
-//	public void update(ArticuloBean2 articulo) {
-//		em.merge(articulo);		
-//	}
-	
 
 	
 }

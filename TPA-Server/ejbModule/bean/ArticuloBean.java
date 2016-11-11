@@ -49,7 +49,7 @@ public class ArticuloBean implements Serializable {
 	@Column(nullable = true)
 	private Integer cantidadDisponible;	
 	
-	// Constructores
+	
 	
 	public ArticuloBean(){}
 
