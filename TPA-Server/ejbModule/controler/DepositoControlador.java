@@ -56,11 +56,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	@Override
 	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
-		
-//		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
-//		newArticulo.aArticuloBean(articuloDTO);
-//		em.merge(newArticulo);	
-							
+								
 		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
 		q.setParameter("codArticulo", articuloDTO.getCodArticulo());
 		ArticuloBean newArticuloBean = new ArticuloBean();
@@ -85,13 +81,6 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		SolicitudCompraBean newSolicitudCompraBean = new SolicitudCompraBean();
 		newSolicitudCompraBean.aSolicitudCompraBean(compraDTO);
 		em.persist(newSolicitudCompraBean);
-	}
-
-
-	@Override
-	public void registrarRecepcionCompra(RecepcionCompraDTO compraDTO) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	
@@ -140,31 +129,17 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		em.persist(newSolicitudArticuloBean);		
 	}
 
-	
-	
-	// Estos métodos de abajo deberían ser privados y no tienen que estar en la interface
-	
-	public ArticuloBean buscarArticuloPorCodigo(Integer codArticulo) {
+	public ArticuloDTO obtenerArticuloPorCodigo(String codArticulo) {
 		
-		return (ArticuloBean) em.createQuery("SELECT a FROM ArticuloBean a where a.codArticulo= :codArticulo").setParameter("codArticulo", codArticulo).getSingleResult();		
+		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
+		q.setParameter("codArticulo", codArticulo);
+		ArticuloBean newArticuloBean = new ArticuloBean();
+		newArticuloBean = (ArticuloBean) q.getSingleResult();
+		
+		ArticuloDTO articuloDTO = new ArticuloDTO();
+		articuloDTO = newArticuloBean.aArticuloDTO();
+		return articuloDTO;			
 	}
-
-	public ArticuloDTO buscarArticuloPorNombre(String nombre) {
-		
-		return (ArticuloDTO) em.createQuery("SELECT a FROM ArticuloBean a where a.nombre = :nombre").setParameter("nombre", nombre).getSingleResult();			
-	}	
 	
-	@SuppressWarnings("unchecked")
-	public List<ArticuloDTO> listarArticulos() {
-		
-		Query q = em.createQuery("from ArticuloBean");
-		@SuppressWarnings("unused")
-		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
-		salida = q.getResultList();
-		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
-		return null;
-	}
-
-
 
 }
