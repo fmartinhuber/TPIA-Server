@@ -10,7 +10,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import bean.SolicitudArticuloBean;
+import dto.ArticuloDTO;
 import dto.SolicitudArticuloDTO;
+
+//CONTROLADOR DE DARO
 
 @Stateless
 @LocalBean
@@ -19,7 +22,8 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	@PersistenceContext(unitName="MyPU")
 	private EntityManager em;
 	
-	//By Daro
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
 		
@@ -39,6 +43,20 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		
 		//Devolvemos las solicitudesDTO pendientes obtenidas
 		return salidaDto;
+	}
+
+	
+	
+	@Override
+	public List<ArticuloDTO> obtenerArticulosDeSolicitud(String solicitudABuscar) {
+		//Obtenemos los Articulos de la SolicitudArticulo seleccionada
+		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.codigo = :cod");
+		q.setParameter("cod", solicitudABuscar);
+		List<SolicitudArticuloBean> salidaBean = new ArrayList<SolicitudArticuloBean>();
+		salidaBean = q.getResultList();
+		
+		
+		return null;
 	}
 
 }
