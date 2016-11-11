@@ -1,7 +1,6 @@
 package controler;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -9,27 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import bean.ArticuloBean;
-import bean.ItemRecepcionCompraBean;
-import bean.RecepcionCompraBean;
-import bean.SolicitudArticuloBean;
-import bean.SolicitudCompraBean;
-import dao.ArticuloDao;
-import dto.ArticuloDTO;
-import dto.ItemSolicitudCompraDTO;
-import dto.RecepcionCompraDTO;
-import dto.SolicitudArticuloDTO;
-import dto.SolicitudCompraDTO;
+import bean.*;
+import dto.*;
 import util.Utils;
 
-
-/**
- * Desde este controlador se deberian de llamar a todos los servicios
- * implementados.
- * 
- * @author Martin
- *
- */
 @Stateless
 @LocalBean
 public class DepositoControlador implements IDepositoControladorLocal, IDepositoControladorRemote{
@@ -78,11 +60,13 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 //		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
 //		newArticulo.aArticuloBean(articuloDTO);
 //		em.merge(newArticulo);	
-		
-		ArticuloBean newArticulo = ArticuloDao.getInstancia().buscarArticuloPorCodigo(108);
-		newArticulo.aArticuloBean(articuloDTO);
-		em.merge(newArticulo);
-		
+							
+		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
+		q.setParameter("codArticulo", articuloDTO.getCodArticulo());
+		ArticuloBean newArticuloBean = new ArticuloBean();
+		newArticuloBean = (ArticuloBean) q.getSingleResult();
+		newArticuloBean.aArticuloBean(articuloDTO);
+		em.merge(newArticuloBean);
 	}
 
 
