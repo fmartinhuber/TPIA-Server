@@ -1,6 +1,7 @@
 package controler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -8,10 +9,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import bean.*;
-import dto.*;
+import bean.ArticuloBean;
+import bean.ItemRecepcionCompraBean;
+import bean.RecepcionCompraBean;
+import bean.SolicitudArticuloBean;
+import bean.SolicitudCompraBean;
+import dto.ArticuloDTO;
+import dto.ItemSolicitudCompraDTO;
+import dto.RecepcionCompraDTO;
+import dto.SolicitudArticuloDTO;
+import dto.SolicitudCompraDTO;
 import util.Utils;
 
+
+/**
+ * Desde este controlador se deberian de llamar a todos los servicios
+ * implementados.
+ * 
+ * @author Martin
+ *
+ */
 @Stateless
 @LocalBean
 public class DepositoControlador implements IDepositoControladorLocal, IDepositoControladorRemote{
@@ -56,6 +73,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	@Override
 	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
+<<<<<<< HEAD
 								
 		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
 		q.setParameter("codArticulo", articuloDTO.getCodArticulo());
@@ -63,6 +81,12 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		newArticuloBean = (ArticuloBean) q.getSingleResult();
 		newArticuloBean.aArticuloBean(articuloDTO);
 		em.merge(newArticuloBean);
+=======
+		
+//		ArticuloBean newArticulo = buscarArticuloPorCodigo(articuloDTO.getCodArticulo());		
+//		newArticulo.aArticuloBean(articuloDTO);
+//		em.merge(newArticulo);	
+>>>>>>> branch 'master' of https://github.com/fmartinhuber/TPIA-Server
 	}
 
 
@@ -77,10 +101,24 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	@Override
 	public void crearSolicitudCompra(SolicitudCompraDTO compraDTO){
+<<<<<<< HEAD
 
 		SolicitudCompraBean newSolicitudCompraBean = new SolicitudCompraBean();
 		newSolicitudCompraBean.aSolicitudCompraBean(compraDTO);
 		em.persist(newSolicitudCompraBean);
+=======
+		//Aca pasar DTO->Bean
+		SolicitudCompraBean solicitudCompraBean = new SolicitudCompraBean();
+		solicitudCompraBean.aSolicitudCompraBean(compraDTO);
+//		em.persist(solicitudCompraBean);
+	}
+
+
+	@Override
+	public void registrarRecepcionCompra(RecepcionCompraDTO compraDTO) {
+		// TODO Auto-generated method stub
+		
+>>>>>>> branch 'master' of https://github.com/fmartinhuber/TPIA-Server
 	}
 
 	
@@ -121,6 +159,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	
+<<<<<<< HEAD
 	@Override
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
 			
@@ -141,5 +180,27 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		return articuloDTO;			
 	}
 	
+=======
+	@SuppressWarnings("unchecked")
+	public List<ArticuloDTO> listarArticulos() {
+		
+		Query q = em.createQuery("from ArticuloBean");
+		@SuppressWarnings("unused")
+		List<ArticuloBean> salida = new ArrayList<ArticuloBean>();
+		salida = q.getResultList();
+		//return salida.stream().map(articuloBean -> new ArticuloDTO(a).collect(Collectors.<ArticuloDTO>toList()));
+		return null;
+	}
+
+	@Override
+	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
+		SolicitudArticuloBean solicitudArticuloBean = new SolicitudArticuloBean();
+		solicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
+		em.persist(solicitudArticuloBean);
+	}
+	
+
+
+>>>>>>> branch 'master' of https://github.com/fmartinhuber/TPIA-Server
 
 }

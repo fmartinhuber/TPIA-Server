@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 import bean.ArticuloBean;
 import bean.ItemSolicitudArticuloBean;
+import bean.ItemSolicitudCompraBean;
 import bean.SolicitudArticuloBean;
 import dto.ItemSolicitudArticuloDTO;
+import dto.ItemSolicitudCompraDTO;
 import dto.SolicitudArticuloDTO;
 
 /**
@@ -34,16 +36,22 @@ public class Utils {
 				.collect(Collectors.<ItemSolicitudArticuloDTO>toList());
 	}
 	
-	public static List <SolicitudArticuloBean> solicitudArticuloDTOToBean (List <SolicitudArticuloDTO> articuloDTOs){
-		return articuloDTOs.stream()
-				.map(a -> new SolicitudArticuloBean(a.getCodigo(),a.getEstado(),a.getFechaEntrega(),a.getIdModulo(),itemSolicitudArticuloDTOToBean(a.getItemsSolicitudArticulo())))
-				.collect(Collectors.<SolicitudArticuloBean>toList());
-	}
+//	public static List <SolicitudArticuloBean> solicitudArticuloDTOToBean (List <SolicitudArticuloDTO> articuloDTOs){
+//		return articuloDTOs.stream()
+//				.map(a -> new SolicitudArticuloBean(a.getCodigo(),a.getEstado(),a.getFechaEntrega(),a.getIdModulo(),itemSolicitudArticuloDTOToBean(a.getItemsSolicitudArticulo())))
+//				.collect(Collectors.<SolicitudArticuloBean>toList());
+//	}
 	
 	public static List <ItemSolicitudArticuloBean> itemSolicitudArticuloDTOToBean (List <ItemSolicitudArticuloDTO> itemSolicitudArticuloBeans){
 		return itemSolicitudArticuloBeans.stream()
 				.map(a -> new ItemSolicitudArticuloBean(new ArticuloBean(),a.getCantidad()))
 				.collect(Collectors.<ItemSolicitudArticuloBean>toList());
 	}
+	
+//	public static List <ItemSolicitudCompraBean> itemSolicitudCompraDTOToBean (List <ItemSolicitudCompraDTO> itemSolicitudCompraBeans){
+//		return itemSolicitudCompraBeans.stream()
+//				.map(a -> new ItemSolicitudCompraBean(new ArticuloBean(),a.getCantidad()))
+//				.collect(Collectors.<ItemSolicitudCompraBean>toList());
+//	}
 	
 }
