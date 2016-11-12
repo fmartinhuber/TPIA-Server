@@ -96,8 +96,23 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 
 	//DECREMENTAR EL STOCK POR LA CANTIDAD PEDIDA POR LA SOLICITUD
 	public void decrementarStock(String solicitudABuscar) {
-		// TODO Auto-generated method stub
+		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
+		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
+		q.setParameter("estped", "Pendiente");
+		q.setParameter("codped", solicitudABuscar);
+		SolicitudArticuloBean miSolArtBeanBASE = new SolicitudArticuloBean();
+		miSolArtBeanBASE = (SolicitudArticuloBean) q.getSingleResult();
 		
+		//Actualizo el stock
+		for(ItemSolicitudArticuloBean ib : miSolArtBeanBASE.getItemsSolicitudArticulo()){
+			int cantEnviada = ib.getCantidad();
+			int stockActual = ib.getArticulo().getCantidadDisponible();
+			//Decremento el stock del articulo por la cantidad enviada
+			ib.getArticulo().setCantidadDisponible(stockActual-cantEnviada);
+		}
+		
+		//Actualizo la Solicitud
+		em.merge(miSolArtBeanBASE);
 	}
 
 
@@ -105,11 +120,39 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	
 	//ACTUALIZAR ESTADO SOLICITUD A "ENTREGADA"
 	public void actualizarEstadoSolicitud(String solicitudABuscar) {
-		// TODO Auto-generated method stub
+		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
+		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
+		q.setParameter("estped", "Pendiente");
+		q.setParameter("codped", solicitudABuscar);
+		SolicitudArticuloBean miSolArtBeanBASE = new SolicitudArticuloBean();
+		miSolArtBeanBASE = (SolicitudArticuloBean) q.getSingleResult();
 		
+		//Actualizo el estado de la Solicitud
+		miSolArtBeanBASE.setEstado("Entregada");
+		
+		//Actualizo la Solicitud
+		em.merge(miSolArtBeanBASE);
 	}
 
 
 
+	//ENVIAR JSON A DESPACHO
+	public void enviarJSON(String solicitudABuscar) {
+		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
+		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
+		q.setParameter("estped", "Pendiente");
+		q.setParameter("codped", solicitudABuscar);
+		SolicitudArticuloBean miSolArtBeanBASE = new SolicitudArticuloBean();
+		miSolArtBeanBASE = (SolicitudArticuloBean) q.getSingleResult();
+		
+		SolicitudArticuloDTO miSolArtDto = new SolicitudArticuloDTO();
+		miSolArtDto = miSolArtBeanBASE.aSolicitudArticuloDTO();
+		
+		//MAR. ACA TENES QUE MANDAR miSolArtDto por JSON A DESPACHO
+		
+	}
+
+	
+	
 
 }
