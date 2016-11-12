@@ -21,7 +21,7 @@ public class SolicitudArticuloBean {
 	private String codigo; 
 	private String estado;	//Pendiente o Entregada
 	private Date fechaEntrega;
-	private Integer idModulo;
+	private String idDespacho;
 	
 	@OneToMany (cascade=CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -33,12 +33,11 @@ public class SolicitudArticuloBean {
 	public SolicitudArticuloBean() {}
 	
 	public SolicitudArticuloBean(String codigo, String estado, Date fechaEntrega,
-			Integer idModulo, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {
-		this.idSolicitudArticulo = idSolicitudArticulo;
+			String idDespacho, List<ItemSolicitudArticuloBean> itemsSolicitudArticulo) {		
 		this.codigo = codigo;
 		this.estado = estado;
 		this.fechaEntrega = fechaEntrega;
-		this.idModulo = idModulo;
+		this.idDespacho = idDespacho;
 		this.itemsSolicitudArticulo = itemsSolicitudArticulo;
 	}
 
@@ -76,12 +75,12 @@ public class SolicitudArticuloBean {
 		this.fechaEntrega = fechaEntrega;
 	}
 
-	public Integer getIdModulo() {
-		return idModulo;
+	public String getIdDespacho() {
+		return idDespacho;
 	}
 
-	public void setIdModulo(Integer idModulo) {
-		this.idModulo = idModulo;
+	public void setIdDespacho(String idDespacho) {
+		this.idDespacho = idDespacho;
 	}
 
 	public List<ItemSolicitudArticuloBean> getItemsSolicitudArticulo() {
@@ -99,7 +98,7 @@ public class SolicitudArticuloBean {
 		this.setCodigo(solicitudArticuloDTO.getCodigo());
 		this.setEstado(solicitudArticuloDTO.getEstado());
 		this.setFechaEntrega(solicitudArticuloDTO.getFechaEntrega());
-		this.setIdModulo(solicitudArticuloDTO.getIdModulo());
+		this.setIdDespacho(solicitudArticuloDTO.getIdDespacho());
 
 		List<ItemSolicitudArticuloBean> listaSolicitudesArticulo = new ArrayList<ItemSolicitudArticuloBean>();
 		for(int i=0; i<solicitudArticuloDTO.getItemsSolicitudArticulo().size(); i++){
@@ -119,7 +118,7 @@ public class SolicitudArticuloBean {
 		solicitudArticuloDTO.setCodigo(this.getCodigo());
 		solicitudArticuloDTO.setEstado(this.getEstado());
 		solicitudArticuloDTO.setFechaEntrega(this.getFechaEntrega());
-		solicitudArticuloDTO.setIdModulo(this.getIdModulo());
+		solicitudArticuloDTO.setIdModulo(this.getIdDespacho());
 		
 		List<ItemSolicitudArticuloDTO> listaItemsSolicitudArticulo = new ArrayList<ItemSolicitudArticuloDTO>();
 		for(int i=0; i<this.getItemsSolicitudArticulo().size(); i++){
