@@ -51,6 +51,8 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		ArticuloBean newArticulo = new ArticuloBean();
 		newArticulo.aArticuloBean(articuloDTO);
 		em.persist(newArticulo);
+		
+		
 	}
 	
 		
