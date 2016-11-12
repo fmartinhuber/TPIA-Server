@@ -82,7 +82,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 		SolicitudCompraBean newSolicitudCompraBean = new SolicitudCompraBean();
 		newSolicitudCompraBean.aSolicitudCompraBean(compraDTO);
-		em.persist(newSolicitudCompraBean);
+//		em.persist(newSolicitudCompraBean);
 	}
 
 	
