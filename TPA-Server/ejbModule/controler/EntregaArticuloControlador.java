@@ -92,6 +92,24 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	}
 
 
+	
+
+	//DECREMENTAR EL STOCK POR LA CANTIDAD PEDIDA POR LA SOLICITUD
+	public void decrementarStock(String solicitudABuscar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	
+	//ACTUALIZAR ESTADO SOLICITUD A "ENTREGADA"
+	public void actualizarEstadoSolicitud(String solicitudABuscar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 }

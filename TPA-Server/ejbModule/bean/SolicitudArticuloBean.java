@@ -19,7 +19,7 @@ public class SolicitudArticuloBean {
 	private Integer idSolicitudArticulo;
 	
 	private String codigo; 
-	private String estado; 
+	private String estado;	//Pendiente o Entregada
 	private Date fechaEntrega;
 	private Integer idModulo;
 	
