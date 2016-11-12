@@ -4,6 +4,9 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import dto.ItemSolicitudArticuloDTO;
 import dto.SolicitudArticuloDTO;
 
@@ -20,7 +23,8 @@ public class SolicitudArticuloBean {
 	private Date fechaEntrega;
 	private Integer idModulo;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany (cascade=CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="idSolicitudArticulo")
 	private List<ItemSolicitudArticuloBean> itemsSolicitudArticulo;
 	
