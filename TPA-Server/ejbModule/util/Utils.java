@@ -3,13 +3,9 @@ package util;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bean.ArticuloBean;
-import bean.ItemSolicitudArticuloBean;
-import bean.ItemSolicitudCompraBean;
-import bean.SolicitudArticuloBean;
-import dto.ItemSolicitudArticuloDTO;
-import dto.ItemSolicitudCompraDTO;
-import dto.SolicitudArticuloDTO;
+import bean.*;
+import dto.*;
+
 
 /**
  * Bienvenidos a Java 1.8
@@ -26,7 +22,7 @@ public class Utils {
 
 	public static List <SolicitudArticuloDTO> solicitudArticuloBeanToDTO (List <SolicitudArticuloBean> articuloBeans){
 		return articuloBeans.stream()
-				.map(a -> new SolicitudArticuloDTO(a.getCodigo(),a.getEstado(),a.getFechaEntrega(),a.getIdModulo(),itemSolicitudArticuloBeanToDTO(a.getItemsSolicitudArticulo())))
+				.map(a -> new SolicitudArticuloDTO(a.getCodigo(),a.getEstado(),a.getFechaEntrega(),a.getIdDespacho(),itemSolicitudArticuloBeanToDTO(a.getItemsSolicitudArticulo())))
 				.collect(Collectors.<SolicitudArticuloDTO>toList());
 	}
 	
