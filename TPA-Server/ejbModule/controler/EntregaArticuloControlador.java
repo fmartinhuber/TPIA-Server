@@ -137,7 +137,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 
 
 	//ENVIAR JSON A DESPACHO
-	public void enviarJSON(String solicitudABuscar) {
+	public SolicitudArticuloDTO enviarJSON(String solicitudABuscar) {
 		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
 		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
 		q.setParameter("estped", "Pendiente");
@@ -145,11 +145,9 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		SolicitudArticuloBean miSolArtBeanBASE = new SolicitudArticuloBean();
 		miSolArtBeanBASE = (SolicitudArticuloBean) q.getSingleResult();
 		
+		//Devolvemos la Solicitud Articulo Dto
 		SolicitudArticuloDTO miSolArtDto = new SolicitudArticuloDTO();
-		miSolArtDto = miSolArtBeanBASE.aSolicitudArticuloDTO();
-		
-		//MAR. ACA TENES QUE MANDAR miSolArtDto por JSON A DESPACHO
-		
+		return miSolArtBeanBASE.aSolicitudArticuloDTO();	
 	}
 
 	
