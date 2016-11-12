@@ -17,9 +17,9 @@ INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], 
 
 --SolicitudArticulo
 --Aca tienen que ir Codigos ALFANUMERICOS, ESTO LO RECIBIMOS DE OTRO GRUPO
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (1, 'C34L0950', N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (2, 'P88M5991', N'Pendiente', CAST(N'2016-11-11 12:18:08.343' AS DateTime), 2)
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (3, 'J99S2815', N'Pendiente', CAST(N'2016-11-02 12:18:08.343' AS DateTime), 1)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idDespacho]) VALUES (1, 'C34L0950', N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idDespacho]) VALUES (2, 'P88M5991', N'Pendiente', CAST(N'2016-11-11 12:18:08.343' AS DateTime), 2)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idDespacho]) VALUES (3, 'J99S2815', N'Pendiente', CAST(N'2016-11-02 12:18:08.343' AS DateTime), 1)
 
 
 
