@@ -20,8 +20,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 
 	@PersistenceContext(unitName="MyPU")
 	private EntityManager em;
-		
-	
+			
 	//LISTAR SOLICITUDES PENDIENTES
 	@SuppressWarnings("unchecked")
 	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
