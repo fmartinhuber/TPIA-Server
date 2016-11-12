@@ -149,6 +149,55 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	}
 
 	
+	/* ---------------- Aqui empieza Solicitud de Compra -----------------------------------*/
 	
+	// GENERA SOLICITUD DE COMPRA
+	public void generarSolicitudCompra(List<String> elementos){
+		
+		// Solicitud de Compra que se presistira
+		SolicitudCompraBean solCompra = new SolicitudCompraBean();
+		List<SolicitudArticuloBean> solicitudesArticulos = new ArrayList<>();
+		List<ItemSolicitudCompraBean> itemsSolicitudCompra = new ArrayList<>();
+		
+		String codSolArticulo = "";												// Utilizado para detectar una nueva solicitud
+		for (String elem : elementos) {
+			String delims = ";";
+			String[] codigos = elem.split(delims);
+			
+			// Si el codigo no coincide con el anterior busca la solicitud de articulo
+			if(codSolArticulo != codigos[0]){			
+				// Buscar solicitud de articulo por codigo y la agregamos al array de solicitudes
+				SolicitudArticuloBean solArticulos = this.getSolicitudArticuloByCodigo(codigos[0]);
+				solicitudesArticulos.add(solArticulos);
+			}
+			
+			// Buscamos articulo en función del codigo enviado
+			ArticuloBean art; 
+			art = (ArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
+			.setParameter("codArticulo", codigos[1])
+			.getSingleResult();
+			
+			// Creamos el itemSolicitud de compra y lo agregamos al array de itemsSolicitude de Compra
+			ItemSolicitudCompraBean itemSolicitudCompra = new ItemSolicitudCompraBean();
+			itemSolicitudCompra.setArticulo(art);
+			itemSolicitudCompra.setCantidad(Integer.parseInt(codigos[2]));
+			itemsSolicitudCompra.add(itemSolicitudCompra);
+			
+		}
+		// Agregamos los array de solicitudes de articulos y los items de articulos
+		solCompra.setItemsSolicitudesCompra(itemsSolicitudCompra);
+		solCompra.setSolicitudesArticulos(solicitudesArticulos);
+		
+		// Pesistimos la solicitu de compra
+		em.persist(solCompra);
+		
+	}
 
+	// Levanta la solicitud de Articulos a partir de un codigo
+	private SolicitudArticuloBean getSolicitudArticuloByCodigo(String codigo){
+		SolicitudArticuloBean solicitud;
+		solicitud = (SolicitudArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
+				.setParameter("codArticulo", codigo).getSingleResult();
+		return solicitud;
+	}
 }
