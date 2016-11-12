@@ -200,4 +200,6 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 				.setParameter("codArticulo", codigo).getSingleResult();
 		return solicitud;
 	}
+	
+	// Prueba commit
 }
