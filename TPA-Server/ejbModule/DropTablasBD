@@ -1,6 +1,7 @@
 --Drop  de tablas de BD ya que con create-drop puede no actualizar correctamente - By Daro actualizado
 
 drop table hibernate_sequence
+drop sequence hibernate_sequence
 drop table ItemRecepcionCompra
 drop table ItemSolicitudCompra
 drop table ItemSolicitudArticulo
