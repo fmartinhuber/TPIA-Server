@@ -4,6 +4,7 @@
 -- Ya que esto es nuestra entrada al sistema (parte de Maxi). Lo demas lo generamos nosotros
 
 --Articulos
+INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (1, N'G12', 101, N'Aire Acondicionado Split WBC 12B-13B 2645 F/C', N'4 modos de operación diferentes: Frío, deshumidificación, ventilación y calor', N'Whirlpool', 4633, N'Foto 01', N'Argentina', N'Electro', CAST(N'2016-11-07 12:18:08.343' AS DateTime), NULL, N'Ficha tecnica 01', NULL, NULL, NULL, 1000)
 INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (2, N'G12', 1739701, N'Freezer Horizontal Eternity M210', N'202 Lt', N'Gafa', 2855, N'Foto 02', N'Argentina', N'Electro', CAST(N'2016-11-03 12:18:08.343' AS DateTime), NULL, N'Ficha tecnica 02', NULL, NULL, NULL, 48)
 INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (3, N'G12', 1755725, N'Centrifugador QV 5.5', N'Capacidad maxima: 5.5 kg', N'Drean', 749, N'Foto 03', N'Argentina', N'Mueble', CAST(N'2016-10-04 12:18:08.343' AS DateTime), NULL, NULL, NULL, NULL, N'Material 03', 17)
 INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], [marca], [precio], [foto], [origen], [tipo], [fecha], [edadRecomendada], [fichaTecnica], [color], [talle], [material], [cantidadDisponible]) VALUES (4, N'G12', 1754721, N'Afeitadora PQ222/17', N'CloseCut, Cabezales flotantes independientes, Hojas autoafilables, Sistema Reflex Action', N'Philips', 199, N'Foto 04', N'Argentina', N'Mueble', CAST(N'2016-10-12 12:18:08.343' AS DateTime), NULL, NULL, NULL, NULL, N'Material 04', 11)
@@ -16,14 +17,9 @@ INSERT  [Articulo] ([id], [idDeposito], [codArticulo], [nombre], [descripcion], 
 
 --SolicitudArticulo
 --Aca tienen que ir Codigos ALFANUMERICOS, ESTO LO RECIBIMOS DE OTRO GRUPO
---INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (1, C34L0950, N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
---INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (2, P88M5991, N'Pendiente', CAST(N'2016-11-11 12:18:08.343' AS DateTime), 2)
---INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (3, J99S2815, N'Pendiente', CAST(N'2016-11-14 12:18:08.343' AS DateTime), 1)
-
---SolicitudArticulo Temporal hasta que se cambie CODIGO POR STRING
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (1, 340950, N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (2, 885991, N'Pendiente', CAST(N'2016-11-11 12:18:08.343' AS DateTime), 2)
-INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (3, 992815, N'Pendiente', CAST(N'2016-11-04 12:18:08.343' AS DateTime), 1)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (1, 'C34L0950', N'Pendiente', CAST(N'2016-11-08 12:18:08.343' AS DateTime), 1)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (2, 'P88M5991', N'Pendiente', CAST(N'2016-11-11 12:18:08.343' AS DateTime), 2)
+INSERT  [SolicitudArticulo] ([idSolicitudArticulo], [codigo], [estado], [fechaEntrega], [idModulo]) VALUES (3, 'J99S2815', N'Pendiente', CAST(N'2016-11-02 12:18:08.343' AS DateTime), 1)
 
 
 
