@@ -125,6 +125,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
 			
 		SolicitudArticuloBean newSolicitudArticuloBean = new SolicitudArticuloBean();
+		solicitudArticuloDTO.setEstado("no cumplida");
 		newSolicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
 		em.persist(newSolicitudArticuloBean);		
 	}
