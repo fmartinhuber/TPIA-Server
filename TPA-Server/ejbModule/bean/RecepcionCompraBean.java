@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import dto.ItemRecepcionCompraDTO;
 import dto.RecepcionCompraDTO;
 import dto.SolicitudCompraDTO;
@@ -20,6 +23,7 @@ public class RecepcionCompraBean {
 	private String codigo;
 		
 	@OneToMany (cascade=CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="idRecepcionCompra")
 	private List<ItemRecepcionCompraBean> itemsRecepcionesCompra;
 	
