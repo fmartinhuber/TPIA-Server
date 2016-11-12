@@ -16,7 +16,7 @@ import dto.*;
 
 @Stateless
 @LocalBean
-public class EntregaArticuloControlador implements IEntregaArticuloControladorLocal, IEntregaArticuloControladorRemote{
+public class EntregaArticuloControlador implements IEntregaArticuloControladorLocal{
 
 	@PersistenceContext(unitName="MyPU")
 	private EntityManager em;
@@ -70,24 +70,6 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	
 
 
-	//Esto se tiene que borrar
-	//OBTENER SOLICITUDARTICULO POR CODIGO
-	public SolicitudArticuloDTO obtenerSolicitudArticuloPorCodigo(String solicitudABuscar) {
-		//Obtenemos las Soliciudes de Articulo en estado Pendiente Y por codigo
-		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
-		q.setParameter("estped", "Pendiente");
-		q.setParameter("codped", solicitudABuscar);
-		SolicitudArticuloBean salidaBean = new SolicitudArticuloBean();
-		salidaBean = (SolicitudArticuloBean) q.getSingleResult();
-		
-		return salidaBean.aSolicitudArticuloDTO();
-	}
-
-
-
-
-
-
 	//ACTUALIZAR ARTICULO DE SOLICITUDARTICULO
 	public void actualizarSolicitudArticulo(String solicitudABuscar, String articuloBuscado, Integer nuevaCant) {
 		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
@@ -108,21 +90,8 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		//Actualizo la Solicitud
 		em.merge(miSolArtBeanBASE);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 
 }
