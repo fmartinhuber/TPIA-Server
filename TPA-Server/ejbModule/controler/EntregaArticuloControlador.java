@@ -9,9 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import bean.SolicitudArticuloBean;
-import dto.ArticuloDTO;
-import dto.SolicitudArticuloDTO;
+import bean.*;
+import dto.*;
 
 //CONTROLADOR DE DARO
 
@@ -24,6 +23,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	
 	
 	
+	//LISTAR SOLICITUDES PENDIENTES
 	@SuppressWarnings("unchecked")
 	public List<SolicitudArticuloDTO> listarSolicitudesPendientes() {
 		
@@ -44,19 +44,43 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		//Devolvemos las solicitudesDTO pendientes obtenidas
 		return salidaDto;
 	}
-
 	
 	
-	@Override
-	public List<ArticuloDTO> obtenerArticulosDeSolicitud(String solicitudABuscar) {
-		//Obtenemos los Articulos de la SolicitudArticulo seleccionada
+	
+	//OBTENER ARTICULOS DE SOLICITUD
+	public List<ItemSolicitudArticuloDTO> obtenerItemDeSolicitud(String solicitudABuscar) {
+		//Obtenemos la SolicitudesArticulo seleccionada
 		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.codigo = :cod");
 		q.setParameter("cod", solicitudABuscar);
-		List<SolicitudArticuloBean> salidaBean = new ArrayList<SolicitudArticuloBean>();
-		salidaBean = q.getResultList();
+		SolicitudArticuloBean salidaBean = new SolicitudArticuloBean();
+		salidaBean = (SolicitudArticuloBean) q.getSingleResult();
 		
+		//Obtenemos los ItemSolicitudArticulos de esta SolicitudArticulo, lo pasamos a DTO y hacemos lista
+		List <ItemSolicitudArticuloDTO> listaItmSolArtDto = new ArrayList<ItemSolicitudArticuloDTO>();
+		for (int i=0; i<salidaBean.getItemsSolicitudArticulo().size(); i++){
+			ItemSolicitudArticuloDTO miItmSolArtDto = new ItemSolicitudArticuloDTO();
+			miItmSolArtDto = salidaBean.getItemsSolicitudArticulo().get(i).aItemSolicitudArticuloDTO();
+			listaItmSolArtDto.add(miItmSolArtDto);
+		}
 		
-		return null;
+		//Devolvemos la lista de ArticulosDto
+		return listaItmSolArtDto;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
