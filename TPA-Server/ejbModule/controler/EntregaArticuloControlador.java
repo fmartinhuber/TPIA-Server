@@ -151,9 +151,6 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	}
 	
 	
-	
-	
-	
 	/* --------------------                                  --------------------*/
 	/* -------------------- Aqui empieza Solicitud de Compra --------------------*/
 	/* --------------------                                  --------------------*/
