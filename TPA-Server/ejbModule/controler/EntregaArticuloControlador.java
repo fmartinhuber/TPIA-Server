@@ -159,7 +159,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	/* --------------------                                  --------------------*/
 	 
 	// GENERA SOLICITUD DE COMPRA
-	public void generarSolicitudCompra(List<String> elementos){
+	public SolicitudCompraDTO generarSolicitudCompra(List<String> elementos){
 		
 		// Solicitud de Compra que se presistira
 		SolicitudCompraBean solCompra = new SolicitudCompraBean();
@@ -203,6 +203,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		// Pesistimos la solicitu de compra
 		em.persist(solCompra);
 		
+		return solCompra.aSolicitudCompraDTO();
 	}
 
 	
