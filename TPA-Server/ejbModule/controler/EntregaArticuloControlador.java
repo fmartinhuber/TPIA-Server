@@ -166,7 +166,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		List<SolicitudArticuloBean> solicitudesArticulos = new ArrayList<>();
 		List<ItemSolicitudCompraBean> itemsSolicitudCompra = new ArrayList<>();
 		
-		String codSolArticulo = "";												// Utilizado para detectar una nueva solicitud
+		String codSolArticulo = "";	// Utilizado para detectar una nueva solicitud
 		for (String elem : elementos) {
 			String [] codigos = elem.split(";");
 			
@@ -208,14 +208,6 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	
 	
 	// Levanta la solicitud de Articulos a partir de un codigo
-	/*private SolicitudArticuloBean getSolicitudArticuloByCodigo(String codigo){
-		SolicitudArticuloBean solicitud;
-		solicitud = (SolicitudArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
-				.setParameter("codArticulo", codigo).getSingleResult();
-		return solicitud;
-	}*/
-	//Que mierda es esto carlos?? Mezclas articulos con solicitudes, fruta magica, lo rearmo
-	
 	private SolicitudArticuloBean getSolicitudArticuloByCodigo(String codigo){
 		//Obtenemos las Soliciudes de Articulo en estado Pendiente
 		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :cod");
