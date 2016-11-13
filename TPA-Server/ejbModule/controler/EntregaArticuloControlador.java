@@ -147,9 +147,14 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		SolicitudArticuloDTO miSolArtDto = new SolicitudArticuloDTO();
 		return miSolArtBeanBASE.aSolicitudArticuloDTO();	
 	}
-
 	
-	/* ---------------- Aqui empieza Solicitud de Compra -----------------------------------*/
+	
+	
+	
+	
+	/* --------------------                                  --------------------*/
+	/* -------------------- Aqui empieza Solicitud de Compra --------------------*/
+	/* --------------------                                  --------------------*/
 	
 	// GENERA SOLICITUD DE COMPRA
 	public void generarSolicitudCompra(List<String> elementos){
@@ -161,7 +166,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		
 		String codSolArticulo = "";												// Utilizado para detectar una nueva solicitud
 		for (String elem : elementos) {
-			String delims = ";";
+			String delims = ";?";	//Nuevo delimitador By Daro
 			String[] codigos = elem.split(delims);
 			
 			// Si el codigo no coincide con el anterior busca la solicitud de articulo
