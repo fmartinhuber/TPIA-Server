@@ -135,7 +135,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 
 
 	//ENVIAR JSON A DESPACHO
-	public SolicitudArticuloDTO enviarJSON(String solicitudABuscar) {
+	public SolicitudArticuloDTO obtenerSolicitudAEnviarADespacho(String solicitudABuscar) {
 		//Obtenemos la SolicitudArticulo que se encuentra cargada en la base
 		Query q = em.createQuery("from SolicitudArticuloBean sab where sab.estado = :estped and sab.codigo = :codped");
 		q.setParameter("estped", "Pendiente");
