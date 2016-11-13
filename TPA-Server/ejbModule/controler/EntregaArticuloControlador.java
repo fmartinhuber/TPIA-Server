@@ -157,7 +157,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 	/* --------------------                                  --------------------*/
 	/* -------------------- Aqui empieza Solicitud de Compra --------------------*/
 	/* --------------------                                  --------------------*/
-	
+	 
 	// GENERA SOLICITUD DE COMPRA
 	public void generarSolicitudCompra(List<String> elementos){
 		
