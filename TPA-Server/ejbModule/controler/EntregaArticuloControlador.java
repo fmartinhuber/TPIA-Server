@@ -166,11 +166,10 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		
 		String codSolArticulo = "";												// Utilizado para detectar una nueva solicitud
 		for (String elem : elementos) {
-			String delims = ";?";	//Nuevo delimitador By Daro
-			String[] codigos = elem.split(delims);
+			String [] codigos = elem.split(";");
 			
 			// Si el codigo no coincide con el anterior busca la solicitud de articulo
-			if(codSolArticulo != codigos[0]){			
+			if(codSolArticulo != codigos[0]){
 				// Buscar solicitud de articulo por codigo y la agregamos al array de solicitudes
 				SolicitudArticuloBean solArticulos = this.getSolicitudArticuloByCodigo(codigos[0]);
 				solicitudesArticulos.add(solArticulos);
@@ -198,6 +197,8 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		
 	}
 
+	
+	
 	// Levanta la solicitud de Articulos a partir de un codigo
 	private SolicitudArticuloBean getSolicitudArticuloByCodigo(String codigo){
 		SolicitudArticuloBean solicitud;
