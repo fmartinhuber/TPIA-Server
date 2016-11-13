@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import bean.*;
 import dto.*;
+import util.GenerarRandom;
 
 //CONTROLADOR DE DARO
 
@@ -194,7 +195,7 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		solCompra.setSolicitudesArticulos(solicitudesArticulos);
 		
 		//Daro: Seteamos otros atributos
-		solCompra.setCodigo("");
+		solCompra.setCodigo(GenerarRandom.getinstancia().generarRandom(10));
 		Date date = new Date();
 		solCompra.setFechaCreacion(date);
 		solCompra.setPendiente("Pendiente");
