@@ -136,7 +136,7 @@ public class SolicitudCompraBean {
 		
 		SolicitudCompraDTO solicitudCompraDTO = new SolicitudCompraDTO();
 		
-		solicitudCompraDTO.setCodigo(this.getCodigo());
+		solicitudCompraDTO.setCodigo(this.getCodigo()); //Daro: Aca hubo magia pero ya no
 		solicitudCompraDTO.setFechaCreacion(this.getFechaCreacion());
 		solicitudCompraDTO.setPendiente(this.getPendiente());
 		
