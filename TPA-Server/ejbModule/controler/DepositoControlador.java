@@ -114,7 +114,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			//Actualiza Stock
 			Integer newStock = art.getCantidadDisponible() + itRecepCompra.getCantidad();
 			art.setCantidadDisponible(newStock);
-			em.merge(art);			
+			em.merge(art);
 		}
 		
 		recepCompra.setItemsRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
@@ -122,6 +122,18 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 	}
 
+	
+	//Daro: Seteo el estado en Finalizado de una Solicitud de Compra. Probar esto por favor
+	public void actualizarEstadoSolicitudCompra(SolicitudCompraDTO solCompraDTO) {
+		Query q = em.createQuery("from SolicitudCompraBean scb where scb.codigo = :cod");
+		q.setParameter("cod", solCompraDTO.getCodigo());
+		SolicitudCompraBean salidaBean = new SolicitudCompraBean();
+		salidaBean = (SolicitudCompraBean) q.getResultList();
+
+		salidaBean.setPendiente("Finalizado");
+		em.merge(salidaBean);
+	}
+	
 	
 	@Override
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
@@ -142,6 +154,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		articuloDTO = newArticuloBean.aArticuloDTO();
 		return articuloDTO;			
 	}
+
 	
 
 }
