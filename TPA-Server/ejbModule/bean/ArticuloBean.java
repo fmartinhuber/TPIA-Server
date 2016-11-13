@@ -14,7 +14,7 @@ public class ArticuloBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;	
 	@Column(nullable = true)
 	private String idDeposito; 	
