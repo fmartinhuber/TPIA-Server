@@ -16,7 +16,7 @@ import util.Utils;
 @Stateless
 @LocalBean
 public class DepositoControlador implements IDepositoControladorLocal, IDepositoControladorRemote{
-
+ 
 	@PersistenceContext(unitName="MyPU")
 	private EntityManager em;
 	
