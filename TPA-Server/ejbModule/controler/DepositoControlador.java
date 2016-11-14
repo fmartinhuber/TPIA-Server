@@ -5,6 +5,7 @@ import java.util.*;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -123,6 +124,18 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 
 	
+	//Daro: Seteo el estado en Finalizado de una Solicitud de Compra. Probar esto por favor
+	public void actualizarEstadoSolicitudCompra(SolicitudCompraDTO solCompraDTO) {
+		Query q = em.createQuery("from SolicitudCompraBean scb where scb.codigo = :cod");
+		q.setParameter("cod", solCompraDTO.getCodigo());
+		SolicitudCompraBean salidaBean = new SolicitudCompraBean();
+		salidaBean = (SolicitudCompraBean) q.getResultList();
+
+		salidaBean.setPendiente("Finalizado");
+		em.merge(salidaBean);
+	}
+	
+	
 	@Override
 	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
 			
@@ -133,14 +146,20 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 
 	public ArticuloDTO obtenerArticuloPorCodigo(String codArticulo) {
 		
-		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
-		q.setParameter("codArticulo", codArticulo);
-		ArticuloBean newArticuloBean = new ArticuloBean();
-		newArticuloBean = (ArticuloBean) q.getSingleResult();
-		
-		ArticuloDTO articuloDTO = new ArticuloDTO();
-		articuloDTO = newArticuloBean.aArticuloDTO();
-		return articuloDTO;			
+		try{
+			Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArt");
+			q.setParameter("codArt", codArticulo);
+			ArticuloBean newArticuloBean = new ArticuloBean();
+			newArticuloBean = (ArticuloBean) q.getSingleResult();
+			ArticuloDTO articuloDTO = new ArticuloDTO();
+			articuloDTO = newArticuloBean.aArticuloDTO();
+				
+			return articuloDTO;
+		}catch (NoResultException e){
+			System.out.println("ERROR NO EXISTE EL PRODUCTO: " + e.getMessage());
+			System.out.println("ERROR NO EXISTE EL PRODUCTO");
+		}
+		return null;
 	}
 	
 
