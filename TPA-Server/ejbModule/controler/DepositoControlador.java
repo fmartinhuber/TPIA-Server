@@ -1,5 +1,6 @@
 package controler;
 
+import java.sql.Date;
 import java.util.*;
 
 import javax.ejb.LocalBean;
@@ -9,8 +10,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import bean.*;
 import dto.*;
+import util.GenerarRandom;
 import util.Utils;
 
 @Stateless
@@ -135,16 +140,9 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		em.merge(salidaBean);
 	}
 	
-	
-	
-	@Override
-	public void crearSolicitudArticulo(SolicitudArticuloDTO solicitudArticuloDTO) {
-			
-		SolicitudArticuloBean newSolicitudArticuloBean = new SolicitudArticuloBean();
-		newSolicitudArticuloBean.aSolicitudArticuloBean(solicitudArticuloDTO);
-		em.persist(newSolicitudArticuloBean);		
-	}
 
+
+	
 	public ArticuloDTO obtenerArticuloPorCodigo(String codArticulo) {
 		
 		try{
@@ -161,6 +159,47 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			System.out.println("ERROR NO EXISTE EL PRODUCTO");
 		}
 		return null;
+	}
+	
+	
+	
+	public void crearSolicitudArticulo(String messageText) {
+		System.out.println(messageText);
+		JsonObject json = new Gson().fromJson(messageText, JsonObject.class);
+		
+		try{
+			String codigoArt = json.get("codArticulo").toString();
+			String idDespacho = json.get("idDespacho").toString();
+			String cant = json.get("cantidad").toString();
+			
+			//Obtengo el Articulo de la Base
+			Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArt");
+			q.setParameter("codArt", codigoArt);
+			ArticuloBean newArticuloBean = new ArticuloBean();
+			newArticuloBean = (ArticuloBean) q.getSingleResult();
+			
+			//Seteo la solicitud de Articulos
+			SolicitudArticuloBean solicitud = new SolicitudArticuloBean();
+			solicitud.setCodigo(GenerarRandom.getinstancia().generarRandom(5));
+			solicitud.setEstado("Pendiente");
+			solicitud.setFechaEntrega(new Date(2016,12,31));
+			solicitud.setIdDespacho(idDespacho);
+			
+			ItemSolicitudArticuloBean itemSolArt = new ItemSolicitudArticuloBean(newArticuloBean, Integer.parseInt(cant));
+			List<ItemSolicitudArticuloBean> listaArt = new ArrayList<ItemSolicitudArticuloBean>();
+			listaArt.add(itemSolArt);
+			solicitud.setItemsSolicitudArticulo(listaArt);
+		
+			//Persisto la solicitud
+			em.persist(solicitud);
+			
+				
+		}catch (NoResultException e){
+			System.out.println("ERROR NO EXISTE EL PRODUCTO: " + e.getMessage());
+			System.out.println("ERROR NO EXISTE EL PRODUCTO");
+		}
+		
+		
 	}
 
 	
