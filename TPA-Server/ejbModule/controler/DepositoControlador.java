@@ -35,36 +35,32 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		return instancia;
 	}
 
-	// Constructor
 	
 	public DepositoControlador() {}
 
-	// Métodos a implementar
 	
-	@Override
+	//LISTAR TODAS LAS SOLICITUDES DE ARTICULOS PENDIENTES
 	public List <SolicitudArticuloDTO> listarSolicitudArticuloPendiente() {
-		
 		Query q = em.createQuery("Select s from SolicitudArticuloBean S where s.estado =:estado").setParameter("estado", "pendiente");
 		@SuppressWarnings("unchecked")
 		List<SolicitudArticuloBean> salida = q.getResultList();
 		return Utils.solicitudArticuloBeanToDTO(salida);
-		
 	}
 	
-	@Override
+
+	//CREAR UN NUEVO ARTICULO
 	public void crearArticulo(ArticuloDTO articuloDTO){
-		
 		ArticuloBean newArticulo = new ArticuloBean();
 		newArticulo.aArticuloBean(articuloDTO);
+		
+		//Daro 14.11: Aca rama hace lo que te dije del Id para el beans
+		
 		em.persist(newArticulo);
-		
-		
 	}
 	
-		
-	@Override
-	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){
-								
+	
+	//ACTUALIZAR STOCK
+	public void modificarStockDelArticulo(ArticuloDTO articuloDTO){			
 		Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArticulo");
 		q.setParameter("codArticulo", articuloDTO.getCodArticulo());
 		ArticuloBean newArticuloBean = new ArticuloBean();
@@ -73,36 +69,32 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		em.merge(newArticuloBean);
 	}
 
-
-	@Override
+	
+	//MODIFICAR ARTICULO
 	public void modificarArticulo(ArticuloDTO articuloDTO) {
-		
 		ArticuloBean newArticulo = new ArticuloBean();
 		newArticulo.aArticuloBean(articuloDTO);
 		em.merge(newArticulo);
 	}
 
-
-	@Override
+	
+	//CREAR SOLICITUD DE COMPRA
 	public void crearSolicitudCompra(SolicitudCompraDTO compraDTO){
-
 		SolicitudCompraBean newSolicitudCompraBean = new SolicitudCompraBean();
 		newSolicitudCompraBean.aSolicitudCompraBean(compraDTO);
 		em.persist(newSolicitudCompraBean);
 	}
 
 	
-	@Override
+	//CREAR RECEPCION DE COMPRA
 	public void crearRecepcionCompra(SolicitudCompraDTO solCompraDTO) {
 		
 		//Convertimos la solicitud de compra DTO a Recepción de compra BEAN
-
 		RecepcionCompraBean recepCompra = new RecepcionCompraBean();		
-		recepCompra.setCodigo(solCompraDTO.getCodigo());										// Seteamos el codigo de la recepción de compra
+		recepCompra.setCodigo(solCompraDTO.getCodigo());												// Seteamos el codigo de la recepción de compra
 		List<ItemRecepcionCompraBean> itemsRecepCompra = new ArrayList<ItemRecepcionCompraBean>(); 		// Creamos la lista de Items de recepción de compra
 		
-		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {		// Recorremos los items de la solicitud de compra a convertir en items recepcion
-			
+		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {				// Recorremos los items de la solicitud de compra a convertir en items recepcion
 			// Obtenemos el articulo de la db por el codigo
 			ArticuloBean art; 
 			art = (ArticuloBean) em.createQuery("select a from ArticuloBean a where a.codArticulo = :codArticulo")
@@ -123,13 +115,12 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			em.merge(art);
 		}
 		
-		recepCompra.setItemsRecepcionesCompra(itemsRecepCompra);			// Seteamos la lista de items de recepción al bean de recepcion de compra
-		em.persist(recepCompra);									// persistimos la recepción de compra
-		
+		recepCompra.setItemsRecepcionesCompra(itemsRecepCompra);		// Seteamos la lista de items de recepción al bean de recepcion de compra
+		em.persist(recepCompra);										// persistimos la recepción de compra
 	}
 
 	
-	//Daro: Seteo el estado en Finalizado de una Solicitud de Compra. Probar esto por favor
+	//ACTUALIZAR ESTADO DE SOLICITUD DE COMPRA -> FINALIZADO
 	public void actualizarEstadoSolicitudCompra(SolicitudCompraDTO solCompraDTO) {
 		Query q = em.createQuery("from SolicitudCompraBean scb where scb.codigo = :cod");
 		q.setParameter("cod", solCompraDTO.getCodigo());
@@ -141,10 +132,8 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 	
 
-
-	
+	//OBTENER ARTICULO POR CODIGO
 	public ArticuloDTO obtenerArticuloPorCodigo(String codArticulo) {
-		
 		try{
 			Query q = em.createQuery("from ArticuloBean a where a.codArticulo = :codArt");
 			q.setParameter("codArt", codArticulo);
@@ -162,11 +151,10 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	}
 	
 	
-	
+	//CREAR SOLICITUD DE ARTICULO (MAXI Y DARO)
 	public void crearSolicitudArticulo(String messageText) {
 		System.out.println(messageText);
 		
-		//Daro 14.11: Faltan las liberias de Gson, donde carajo las importo?
 		JsonObject json = new Gson().fromJson(messageText, JsonObject.class);
 		
 		try{
