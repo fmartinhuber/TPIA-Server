@@ -127,11 +127,13 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		SolicitudArticuloBean miSolArtBeanBASE = new SolicitudArticuloBean();
 		miSolArtBeanBASE = (SolicitudArticuloBean) q.getSingleResult();
 		
+		//DARO: COMENTO ESTO PARA PRUEBAS ENTREGA, HAY QUE DESCOMENTAR
+		
 		//Actualizo el estado de la Solicitud
-		miSolArtBeanBASE.setEstado("Entregada");
+		//miSolArtBeanBASE.setEstado("Entregada");
 		
 		//Actualizo la Solicitud
-		em.merge(miSolArtBeanBASE);
+		//em.merge(miSolArtBeanBASE);
 	}
 
 
