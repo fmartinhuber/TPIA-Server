@@ -165,6 +165,8 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	public void crearSolicitudArticulo(String messageText) {
 		System.out.println(messageText);
+		
+		//Daro 14.11: Faltan las liberias de Gson, donde carajo las importo?
 		JsonObject json = new Gson().fromJson(messageText, JsonObject.class);
 		
 		try{

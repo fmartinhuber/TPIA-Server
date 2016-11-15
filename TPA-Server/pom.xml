@@ -6,6 +6,14 @@
   <packaging>ejb</packaging>
   
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<!-- Daro 14.11: Importo gson -->
+		<dependency>
+	    	<groupId>com.google.code.gson</groupId>
+	    	<artifactId>gson</artifactId>
+	   		<version>2.7</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
