@@ -32,3 +32,11 @@ INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArtic
 INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (7, 3, 1, 3)
 INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (8, 8, 4, 2)
 INSERT  [ItemSolicitudArticulo] ([idItemSolicitudArticulo], [cantidad], [idArticulo], [idSolicitudArticulo]) VALUES (9, 7, 8, 3)
+
+
+
+--Update fundamental para que no se pisen los ID al insertar cosas con la secuencia que autogenera hibernate (correr al momento de los insert)
+update hibernate_sequence
+set next_val = 10
+
+
