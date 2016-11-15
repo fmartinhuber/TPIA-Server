@@ -148,8 +148,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			System.out.println("ERROR NO EXISTE EL PRODUCTO");
 		}
 		return null;
-	}
-	
+	}	
 	
 	//CREAR SOLICITUD DE ARTICULO (MAXI Y DARO)
 	public void crearSolicitudArticulo(String messageText) {
