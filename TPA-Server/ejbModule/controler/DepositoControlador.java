@@ -152,10 +152,10 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	
 	//CREAR SOLICITUD DE ARTICULO (MAXI Y DARO)
 	public void crearSolicitudArticulo(String messageText) {
-		System.out.println(messageText);
 		
 		JsonObject json = new Gson().fromJson(messageText, JsonObject.class);
 		
+		System.out.println(json.toString());
 		try{
 			String codigoArt = json.get("codArticulo").toString();
 			String idDespacho = json.get("idDespacho").toString();
