@@ -107,7 +107,7 @@ public class SolicitudCompraBean {
 	
 	public void aSolicitudCompraBean(SolicitudCompraDTO solicitudCompraDTO){
 		
-		this.setCodigo(solicitudCompraDTO.getCodigo());
+		this.setCodigo(solicitudCompraDTO.getCodArticulo());
 		this.setFechaCreacion(solicitudCompraDTO.getFechaCreacion());
 		this.setPendiente(solicitudCompraDTO.getPendiente());
 		
@@ -136,7 +136,7 @@ public class SolicitudCompraBean {
 		
 		SolicitudCompraDTO solicitudCompraDTO = new SolicitudCompraDTO();
 		
-		solicitudCompraDTO.setCodigo(this.getCodigo()); //Daro: Aca hubo magia pero ya no
+		solicitudCompraDTO.setCodArticulo(this.getCodigo()); //Daro: Aca hubo magia pero ya no
 		solicitudCompraDTO.setFechaCreacion(this.getFechaCreacion());
 		solicitudCompraDTO.setPendiente(this.getPendiente());
 		

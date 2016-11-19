@@ -91,7 +91,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		
 		//Convertimos la solicitud de compra DTO a Recepción de compra BEAN
 		RecepcionCompraBean recepCompra = new RecepcionCompraBean();		
-		recepCompra.setCodigo(solCompraDTO.getCodigo());												// Seteamos el codigo de la recepción de compra
+		recepCompra.setCodigo(solCompraDTO.getCodArticulo());												// Seteamos el codigo de la recepción de compra
 		List<ItemRecepcionCompraBean> itemsRecepCompra = new ArrayList<ItemRecepcionCompraBean>(); 		// Creamos la lista de Items de recepción de compra
 		
 		for (ItemSolicitudCompraDTO itSolDTO : solCompraDTO.getItemsSolicitudesCompra()) {				// Recorremos los items de la solicitud de compra a convertir en items recepcion
@@ -123,7 +123,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 	//ACTUALIZAR ESTADO DE SOLICITUD DE COMPRA -> FINALIZADO
 	public void actualizarEstadoSolicitudCompra(SolicitudCompraDTO solCompraDTO) {
 		Query q = em.createQuery("from SolicitudCompraBean scb where scb.codigo = :cod");
-		q.setParameter("cod", solCompraDTO.getCodigo());
+		q.setParameter("cod", solCompraDTO.getCodArticulo());
 		SolicitudCompraBean salidaBean = new SolicitudCompraBean();
 		salidaBean = (SolicitudCompraBean) q.getResultList();
 
@@ -174,7 +174,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			solicitud.setFechaEntrega(new Date(2016,12,31));
 			solicitud.setIdDespacho(idDespacho);
 			
-			ItemSolicitudArticuloBean itemSolArt = new ItemSolicitudArticuloBean(newArticuloBean, Integer.parseInt(cant));
+			ItemSolicitudArticuloBean itemSolArt = new ItemSolicitudArticuloBean(newArticuloBean, Float.valueOf(cant).intValue());
 			List<ItemSolicitudArticuloBean> listaArt = new ArrayList<ItemSolicitudArticuloBean>();
 			listaArt.add(itemSolArt);
 			solicitud.setItemsSolicitudArticulo(listaArt);
