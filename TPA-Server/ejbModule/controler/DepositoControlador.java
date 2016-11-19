@@ -125,7 +125,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 		Query q = em.createQuery("from SolicitudCompraBean scb where scb.codigo = :cod");
 		q.setParameter("cod", solCompraDTO.getCodArticulo());
 		SolicitudCompraBean salidaBean = new SolicitudCompraBean();
-		salidaBean = (SolicitudCompraBean) q.getResultList();
+		salidaBean = (SolicitudCompraBean) q.getSingleResult();
 
 		salidaBean.setPendiente("Finalizado");
 		em.merge(salidaBean);
@@ -174,7 +174,7 @@ public class DepositoControlador implements IDepositoControladorLocal, IDeposito
 			solicitud.setFechaEntrega(new Date(2016,12,31));
 			solicitud.setIdDespacho(idDespacho);
 			
-			ItemSolicitudArticuloBean itemSolArt = new ItemSolicitudArticuloBean(newArticuloBean, Float.valueOf(cant).intValue());
+			ItemSolicitudArticuloBean itemSolArt = new ItemSolicitudArticuloBean(newArticuloBean, Integer.valueOf(cant));
 			List<ItemSolicitudArticuloBean> listaArt = new ArrayList<ItemSolicitudArticuloBean>();
 			listaArt.add(itemSolArt);
 			solicitud.setItemsSolicitudArticulo(listaArt);
