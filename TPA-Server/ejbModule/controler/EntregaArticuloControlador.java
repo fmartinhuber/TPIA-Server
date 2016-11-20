@@ -219,5 +219,4 @@ public class EntregaArticuloControlador implements IEntregaArticuloControladorLo
 		return salidaBean;
 	}
 	
-	// Prueba commit
 }
